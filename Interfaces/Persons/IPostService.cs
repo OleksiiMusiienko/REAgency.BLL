@@ -16,7 +16,6 @@ namespace REAgency.BLL.Interfaces.Persons
         Task<PostDTO> GetPostByName(string name);
 
         Task CreatePost(PostDTO postDTO);
-        Task UpdatePost(PostDTO postDTO);
         Task DeletePost(int id);
     }
 }
