@@ -24,7 +24,7 @@ namespace REAgency.BLL.Services.Locations
         {
             var district = await Database.Districts.Get(id);
             if (district == null)
-                throw new ValidationException("Wrong area!", "");
+                throw new ValidationException("Wrong district!", "");
             return new DistrictDTO
             {
                 Id = district.Id,
@@ -38,7 +38,7 @@ namespace REAgency.BLL.Services.Locations
         {
             var district = await Database.Districts.GetByName(name);
             if (district == null)
-                throw new ValidationException("Wrong area!", "");
+                throw new ValidationException("Wrong district!", "");
             return new DistrictDTO
             {
                 Id = district.Id,

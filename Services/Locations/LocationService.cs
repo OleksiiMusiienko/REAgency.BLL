@@ -23,7 +23,7 @@ namespace REAgency.BLL.Services.Locations
         {
             var location = await Database.Locations.Get(id);
             if (location == null)
-                throw new ValidationException("Wrong area!", "");
+                throw new ValidationException("Wrong location!", "");
             return new LocationDTO
             {
                 Id = location.Id,

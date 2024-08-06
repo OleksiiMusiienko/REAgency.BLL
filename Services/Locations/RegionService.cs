@@ -24,7 +24,7 @@ namespace REAgency.BLL.Services.Locations
         {
             var region = await Database.Regions.Get(id);
             if (region == null)
-                throw new ValidationException("Wrong area!", "");
+                throw new ValidationException("Wrong region!", "");
             return new RegionDTO
             {
                 Id = region.Id,
@@ -38,7 +38,7 @@ namespace REAgency.BLL.Services.Locations
         {
             var region = await Database.Regions.GetByName(name);
             if (region == null)
-                throw new ValidationException("Wrong area!", "");
+                throw new ValidationException("Wrong region!", "");
             return new RegionDTO
             {
                 Id = region.Id,
