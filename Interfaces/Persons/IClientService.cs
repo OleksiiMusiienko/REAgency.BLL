@@ -14,6 +14,7 @@ namespace REAgency.BLL.Interfaces.Persons
         Task<ClientDTO> GetClientById(int id);
 
         Task<ClientDTO> GetClientByName(string name);
+        Task<ClientDTO> GetClientByEmail(string email);
 
         Task CreateClient(ClientDTO clientDTO);
         Task UpdateClient(ClientDTO clientDTO);

@@ -79,6 +79,30 @@ namespace REAgency.BLL.Services.Persons
             };
         }
 
+        public async Task<ClientDTO> GetClientByEmail(string email)
+        {
+            var client = await Database.Clients.GetByEmail(email);
+            if (client == null)
+                throw new ValidationException("Wrong client!", "");
+            return new ClientDTO
+            {
+                Id = client.Id,
+                Name = client.Name,
+                Phone1 = client.Phone1,
+                Email = client.Email,
+                userStatus = client.userStatus,
+                operationId = client.operationId,
+                OperationName = client.Operation?.Name,
+                employeeId = client.employeeId,
+                EmployeeName = client.Employee?.Name,
+                EmployeePhone1 = client.Employee?.Phone1,
+                EmployeePhone2 = client.Employee?.Phone2,
+                status = client.status,
+                Password = client.Password,
+                Salt = client.Salt,
+            };
+        }
+
         public async Task CreateClient(ClientDTO clientDTO)
         {
             byte[] saltbuf = new byte[16];
