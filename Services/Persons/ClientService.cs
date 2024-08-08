@@ -11,7 +11,7 @@ using System.Text;
 
 namespace REAgency.BLL.Services.Persons
 {
-    internal class ClientService: IClientService
+    public class ClientService: IClientService
     {
         IUnitOfWork Database { get; set; }
 
@@ -44,11 +44,11 @@ namespace REAgency.BLL.Services.Persons
                 Email = client.Email,
                 userStatus = client.userStatus,
                 operationId = client.operationId,
-                OperationName = client.Operation?.Name,
-                employeeId = client.employeeId,
-                EmployeeName = client.Employee?.Name,
-                EmployeePhone1 = client.Employee?.Phone1,
-                EmployeePhone2 = client.Employee?.Phone2,
+                //OperationName = client.Operation?.Name,
+                //employeeId = client.employeeId,
+                //EmployeeName = client.Employee?.Name,
+                //EmployeePhone1 = client.Employee?.Phone1,
+                //EmployeePhone2 = client.Employee?.Phone2,
                 status = client.status,
                 Password = client.Password,
                 Salt = client.Salt,
@@ -68,11 +68,11 @@ namespace REAgency.BLL.Services.Persons
                 Email = client.Email,
                 userStatus = client.userStatus,
                 operationId = client.operationId,
-                OperationName = client.Operation?.Name,
-                employeeId = client.employeeId,
-                EmployeeName = client.Employee?.Name,
-                EmployeePhone1 = client.Employee?.Phone1,
-                EmployeePhone2 = client.Employee?.Phone2,
+                //OperationName = client.Operation?.Name,
+                //employeeId = client.employeeId,
+                //EmployeeName = client.Employee?.Name,
+                //EmployeePhone1 = client.Employee?.Phone1,
+                //EmployeePhone2 = client.Employee?.Phone2,
                 status = client.status,
                 Password = client.Password,
                 Salt = client.Salt,
@@ -83,7 +83,10 @@ namespace REAgency.BLL.Services.Persons
         {
             var client = await Database.Clients.GetByEmail(email);
             if (client == null)
-                throw new ValidationException("Wrong client!", "");
+            {
+                ClientDTO Client = new ClientDTO();
+                return Client;
+            }
             return new ClientDTO
             {
                 Id = client.Id,
@@ -92,11 +95,11 @@ namespace REAgency.BLL.Services.Persons
                 Email = client.Email,
                 userStatus = client.userStatus,
                 operationId = client.operationId,
-                OperationName = client.Operation?.Name,
-                employeeId = client.employeeId,
-                EmployeeName = client.Employee?.Name,
-                EmployeePhone1 = client.Employee?.Phone1,
-                EmployeePhone2 = client.Employee?.Phone2,
+                //OperationName = client.Operation?.Name,
+                //employeeId = client.employeeId,
+                //EmployeeName = client.Employee?.Name,
+                //EmployeePhone1 = client.Employee?.Phone1,
+                //EmployeePhone2 = client.Employee?.Phone2,
                 status = client.status,
                 Password = client.Password,
                 Salt = client.Salt,
@@ -105,18 +108,18 @@ namespace REAgency.BLL.Services.Persons
 
         public async Task CreateClient(ClientDTO clientDTO)
         {
-            byte[] saltbuf = new byte[16];
-            RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
-            randomNumberGenerator.GetBytes(saltbuf);
-            StringBuilder sb = new StringBuilder(16);
-            for (int i = 0; i < 16; i++)
-                sb.Append(string.Format("{0:X2}", saltbuf[i]));
-            string salt = sb.ToString();
-            byte[] password = Encoding.Unicode.GetBytes(salt + clientDTO.Password);
-            byte[] byteHash = SHA256.HashData(password);
-            StringBuilder hash = new StringBuilder(byteHash.Length);
-            for (int i = 0; i < byteHash.Length; i++)
-                hash.Append(string.Format("{0:X2}", byteHash[i]));
+            //byte[] saltbuf = new byte[16];
+            //RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
+            //randomNumberGenerator.GetBytes(saltbuf);
+            //StringBuilder sb = new StringBuilder(16);
+            //for (int i = 0; i < 16; i++)
+            //    sb.Append(string.Format("{0:X2}", saltbuf[i]));
+            //string salt = sb.ToString();
+            //byte[] password = Encoding.Unicode.GetBytes(salt + clientDTO.Password);
+            //byte[] byteHash = SHA256.HashData(password);
+            //StringBuilder hash = new StringBuilder(byteHash.Length);
+            //for (int i = 0; i < byteHash.Length; i++)
+            //    hash.Append(string.Format("{0:X2}", byteHash[i]));
             var client = new Client
             {
                 Id = clientDTO.Id,
@@ -125,10 +128,10 @@ namespace REAgency.BLL.Services.Persons
                 Email = clientDTO.Email,
                 userStatus = clientDTO.userStatus,
                 operationId = clientDTO.operationId,
-                employeeId = clientDTO.employeeId,
+                //employeeId = clientDTO.employeeId,
                 status = clientDTO.status,
-                Password = hash.ToString(),
-                Salt = salt
+                Password = clientDTO.Password,
+                Salt = clientDTO.Salt
             };
             await Database.Clients.Create(client);
             await Database.Save();
@@ -155,7 +158,7 @@ namespace REAgency.BLL.Services.Persons
                 Email = clientDTO.Email,
                 userStatus = clientDTO.userStatus,
                 operationId = clientDTO.operationId,
-                employeeId = clientDTO.employeeId,
+                //employeeId = clientDTO.employeeId,
                 status = clientDTO.status,
                 Password = hash.ToString(),
                 Salt = salt
