@@ -7,7 +7,7 @@ using REAgency.DAL.Interfaces;
 
 namespace REAgency.BLL.Services
 {
-    public class EstateTypeService
+    public class EstateTypeService : IEstateTypeService
     {
         IUnitOfWork Database { get; set; }
 

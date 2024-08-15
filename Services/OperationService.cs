@@ -7,7 +7,7 @@ using REAgency.DAL.Interfaces;
 
 namespace REAgency.BLL.Services
 {
-    public class OperationService
+    public class OperationService : IOperationService
     {
         IUnitOfWork Database { get; set; }
 
