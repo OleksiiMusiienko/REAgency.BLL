@@ -127,7 +127,7 @@ namespace REAgency.BLL.Services.Persons
                 Phone1 = clientDTO.Phone1,
                 Email = clientDTO.Email,
                 userStatus = clientDTO.userStatus,
-                operationId = clientDTO.operationId,
+                //operationId = clientDTO.operationId,
                 //employeeId = clientDTO.employeeId,
                 status = clientDTO.status,
                 Password = clientDTO.Password,
