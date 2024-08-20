@@ -9,7 +9,7 @@ using System.Text;
 
 namespace REAgency.BLL.Services.Persons
 {
-    internal class EmployeeService: IEmployeeService
+    public class EmployeeService: IEmployeeService
     {
         IUnitOfWork Database { get; set; }
 
@@ -55,6 +55,33 @@ namespace REAgency.BLL.Services.Persons
             var employee = await Database.Employees.GetByName(name);
             if (employee == null)
                 throw new ValidationException("Wrong employee!", "");
+            return new EmployeeDTO
+            {
+                Id = employee.Id,
+                Name = employee.Name,
+                Phone1 = employee.Phone1,
+                Email = employee.Email,
+                userStatus = employee.userStatus,
+                Avatar = employee.Avatar,
+                Phone2 = employee.Phone2,
+                dateReg = employee.dateReg,
+                adminStatus = employee.adminStatus,
+                postId = employee.postId,
+                Post = employee.Post?.Name,
+                Password = employee.Password,
+                Salt = employee.Salt,
+                Description = employee.Description
+            };
+        }
+
+        public async Task<EmployeeDTO> GetEmployeeByEmail(string email)
+        {
+            var employee = await Database.Employees.GetByEmail(email);
+            if (employee == null)
+            {
+                //EmployeeDTO Employee = new EmployeeDTO();
+                return null;
+            }
             return new EmployeeDTO
             {
                 Id = employee.Id,
