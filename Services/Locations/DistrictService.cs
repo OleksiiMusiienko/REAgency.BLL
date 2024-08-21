@@ -7,7 +7,7 @@ using AutoMapper;
 
 namespace REAgency.BLL.Services.Locations
 {
-    internal class DistrictService : IDistrictService
+    public class DistrictService : IDistrictService
     {
         IUnitOfWork Database { get; set; }
         public DistrictService(IUnitOfWork uow)

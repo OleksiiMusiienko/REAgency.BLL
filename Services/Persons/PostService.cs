@@ -8,7 +8,7 @@ using REAgency.BLL.DTO;
 
 namespace REAgency.BLL.Services.Persons
 {
-    internal class PostService : IPostService
+    public class PostService : IPostService
     {
         IUnitOfWork Database { get; set; }
 
