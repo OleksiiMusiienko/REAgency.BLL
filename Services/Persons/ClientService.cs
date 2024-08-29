@@ -166,6 +166,29 @@ namespace REAgency.BLL.Services.Persons
             Database.Clients.Update(client);
             await Database.Save();
         }
+        public async Task UpdateClientPassword(ClientDTO clientDTO)
+        {
+            byte[] saltbuf = new byte[16];
+            RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
+            randomNumberGenerator.GetBytes(saltbuf);
+            StringBuilder sb = new StringBuilder(16);
+            for (int i = 0; i < 16; i++)
+                sb.Append(string.Format("{0:X2}", saltbuf[i]));
+            string salt = sb.ToString();
+            byte[] password = Encoding.Unicode.GetBytes(salt + clientDTO.Password);
+            byte[] byteHash = SHA256.HashData(password);
+            StringBuilder hash = new StringBuilder(byteHash.Length);
+            for (int i = 0; i < byteHash.Length; i++)
+                hash.Append(string.Format("{0:X2}", byteHash[i]));
+            var client = new Client
+            {
+                Id = clientDTO.Id,
+                Password = hash.ToString(),
+                Salt = salt
+            };
+            Database.Clients.UpdatePassword(client);
+            await Database.Save();
+        }
         public async Task DeleteClient(int id)
         {
             await Database.Clients.Delete(id);

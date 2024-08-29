@@ -167,6 +167,29 @@ namespace REAgency.BLL.Services.Persons
             Database.Employees.Update(еmployee);
             await Database.Save();
         }
+        public async Task UpdateEmployeePassword(EmployeeDTO еmployeeDTO)
+        {
+            byte[] saltbuf = new byte[16];
+            RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
+            randomNumberGenerator.GetBytes(saltbuf);
+            StringBuilder sb = new StringBuilder(16);
+            for (int i = 0; i < 16; i++)
+                sb.Append(string.Format("{0:X2}", saltbuf[i]));
+            string salt = sb.ToString();
+            byte[] password = Encoding.Unicode.GetBytes(salt + еmployeeDTO.Password);
+            byte[] byteHash = SHA256.HashData(password);
+            StringBuilder hash = new StringBuilder(byteHash.Length);
+            for (int i = 0; i < byteHash.Length; i++)
+                hash.Append(string.Format("{0:X2}", byteHash[i]));
+            var еmployee = new Employee
+            {
+                Id = еmployeeDTO.Id,
+                Password = hash.ToString(),
+                Salt = salt
+            };
+            Database.Employees.UpdatePassword( еmployee);
+            await Database.Save();
+        }
         public async Task DeleteEmployee(int id)
         {
             await Database.Employees.Delete(id);
