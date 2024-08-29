@@ -17,6 +17,7 @@ namespace REAgency.BLL.Interfaces.Persons
         Task<EmployeeDTO> GetEmployeeByEmail(string email);
 
         Task CreateEmployee(EmployeeDTO еmployeeDTO);
+        Task UpdateEmployeePassword(EmployeeDTO employeeDTO);
         Task UpdateEmployee(EmployeeDTO еmployeeDTO);
         Task DeleteEmployee(int id);
     }
