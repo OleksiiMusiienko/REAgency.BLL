@@ -12,9 +12,6 @@ namespace REAgency.BLL.Interfaces.Object
         Task<IEnumerable<RoomDTO>> GetAllRooms();
 
         Task<RoomDTO> GetRoomById(int id);
-
-        Task<RoomDTO> GetRoomsByEmployeeId(int employeeId);
-
         Task CreateRoom(RoomDTO officeDTO);
         Task UpdateRoom(RoomDTO officeDTO);
         Task DeleteRoom(int id);

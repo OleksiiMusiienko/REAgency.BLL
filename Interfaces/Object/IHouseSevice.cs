@@ -13,8 +13,6 @@ namespace REAgency.BLL.Interfaces.Object
 
         Task<HouseDTO> GetHouseById(int id);
 
-        Task<HouseDTO> GetHousesByEmployeeId(int employeeId);
-
         Task CreateHouse(HouseDTO officeDTO);
         Task UpdateHouse(HouseDTO officeDTO);
         Task DeleteHouse(int id);

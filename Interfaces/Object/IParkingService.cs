@@ -13,8 +13,6 @@ namespace REAgency.BLL.Interfaces.Object
 
         Task<ParkingDTO> GetParkingById(int id);
 
-        Task<ParkingDTO> GetParkingByEmployee(int employeeId);
-
         Task CreateParking(ParkingDTO parkingDTO);
         Task UpdateParking(ParkingDTO parkingDTO);
         Task DeleteParking(int id);

@@ -12,9 +12,6 @@ namespace REAgency.BLL.Interfaces.Object
         Task<IEnumerable<SteadDTO>> GetSteads();
 
         Task<SteadDTO> GetSteadById(int id);
-
-        Task<SteadDTO> GetSteadByEmployee(int employeeId);
-
         Task CreateStead(SteadDTO steadDTO);
         Task UpdateStead(SteadDTO steadDTO);
         Task DeleteStead(int id);

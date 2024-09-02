@@ -48,21 +48,7 @@ namespace REAgency.BLL.Services.Objects
 
             };
         }
-        public async Task<FlatDTO> GetFlatsByEmployeeId(int employeeId)
-        {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Flat, FlatDTO>()).CreateMapper();
-            return (FlatDTO)mapper.Map<IEnumerable<Flat>, IEnumerable<FlatDTO>>(await Database.Flats.GetAllByEmployee(employeeId));
-        }
-
-        public async Task<IEnumerable<FlatDTO>> GetFlatsByType(int typeId)
-        {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Flat, FlatDTO>()).CreateMapper();
-            var flats = await Database.Flats.GetAllByType(typeId);
-
-            return mapper.Map<IEnumerable<Flat>, IEnumerable<FlatDTO>>(flats);
-
-
-        }
+     
 
         public async Task CreateFlat(FlatDTO flatDTO)
         {
