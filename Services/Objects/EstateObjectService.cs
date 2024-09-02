@@ -24,7 +24,7 @@ namespace REAgency.BLL.Services.Objects
             Database = uow;
         }
 
-        public async Task<IEnumerable<EstateObjectDTO>> GetAllFlats()
+        public async Task<IEnumerable<EstateObjectDTO>> GetAllEstateObjects()
         {
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<EstateObject, EstateObjectDTO>()).CreateMapper();
             return mapper.Map<IEnumerable<EstateObject>, IEnumerable<EstateObjectDTO>>(await Database.EstateObject.GetAll());
@@ -60,6 +60,12 @@ namespace REAgency.BLL.Services.Objects
                 pathPhoto = estateObject.pathPhoto
 
             };
+        }
+
+        public async Task<IEnumerable<EstateObjectDTO>> GetEstateObjectByEmployeeId(int id)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<EstateObject, EstateObjectDTO>()).CreateMapper();
+            return mapper.Map<IEnumerable<EstateObject>, IEnumerable<EstateObjectDTO>>(await Database.EstateObject.GetAllByEmployeeId(id));
         }
 
 
@@ -109,7 +115,7 @@ namespace REAgency.BLL.Services.Objects
             await Database.Save();
         }
 
-        public async Task DeleteEstateObjet(int id)
+        public async Task DeleteEstateObject(int id)
         {
             await Database.EstateObject.Delete(id);
             await Database.Save();
