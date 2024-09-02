@@ -27,11 +27,11 @@ namespace REAgency.BLL.Services.Objects
         public async Task<IEnumerable<EstateObjectDTO>> GetAllEstateObjects()
         {
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<EstateObject, EstateObjectDTO>()).CreateMapper();
-            return mapper.Map<IEnumerable<EstateObject>, IEnumerable<EstateObjectDTO>>(await Database.EstateObject.GetAll());
+            return mapper.Map<IEnumerable<EstateObject>, IEnumerable<EstateObjectDTO>>(await Database.EstateObjects.GetAll());
         }
         public async Task<EstateObjectDTO> GetEstateObjectById(int id)
         {
-            var estateObject = await Database.EstateObject.Get(id);
+            var estateObject = await Database.EstateObjects.Get(id);
             if (estateObject == null)
                 throw new ValidationException("Wrong flat!");
             return new EstateObjectDTO
@@ -65,7 +65,7 @@ namespace REAgency.BLL.Services.Objects
         public async Task<IEnumerable<EstateObjectDTO>> GetEstateObjectByEmployeeId(int id)
         {
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<EstateObject, EstateObjectDTO>()).CreateMapper();
-            return mapper.Map<IEnumerable<EstateObject>, IEnumerable<EstateObjectDTO>>(await Database.EstateObject.GetAllByEmployeeId(id));
+            return mapper.Map<IEnumerable<EstateObject>, IEnumerable<EstateObjectDTO>>(await Database.EstateObjects.GetAllByEmployeeId(id));
         }
 
 
@@ -88,7 +88,7 @@ namespace REAgency.BLL.Services.Objects
                 Date = estateObjectDTO.Date,
                 pathPhoto = estateObjectDTO.pathPhoto
             };
-            await Database.EstateObject.Create(estateObject);
+            await Database.EstateObjects.Create(estateObject);
             await Database.Save();
         }
 
@@ -111,13 +111,13 @@ namespace REAgency.BLL.Services.Objects
                 Date = estateObjectDTO.Date,
                 pathPhoto = estateObjectDTO.pathPhoto
             };
-            Database.EstateObject.Update(estateObject);
+            Database.EstateObjects.Update(estateObject);
             await Database.Save();
         }
 
         public async Task DeleteEstateObject(int id)
         {
-            await Database.EstateObject.Delete(id);
+            await Database.EstateObjects.Delete(id);
             await Database.Save();
         }
 
