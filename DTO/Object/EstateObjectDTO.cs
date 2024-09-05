@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace REAgency.BLL.DTO.Object
 {
@@ -6,18 +7,20 @@ namespace REAgency.BLL.DTO.Object
     {
         public int Id { get; set; }
         public int countViews { get; set; }  //количество просмотров обьекта считает средний слой
-       
+
         //ез нижнего слоя придет обьект Client, нам нужно отобразить на вьюшке
         //(для сотрудника или админа) имя и телефон клиента
-        public string clientName { get; set; } 
-        public string clientPhone { get; set; }
+
+        public int clientId { get; set; }
+        //public string clientName { get; set; } 
+        //public string clientPhone { get; set; }
         //приходит сотрудник, отображаем имя и телефон для всех
         public int employeeId { get; set; }
-        public string employeeName { get; set; }
-        public string employeePhone { get; set; }
+        //public string employeeName { get; set; }
+        //public string employeePhone { get; set; }
 
         public int operationId { get; set; }
-        public string operationName { get; set; }
+        //public string operationName { get; set; }
 
        //по локациям отображаем страну, область, район, населенный пункт
         public int locationId { get; set; }
@@ -26,6 +29,7 @@ namespace REAgency.BLL.DTO.Object
         //public string districtName { get; set; }
         //public string localityName { get; set; }
         public string? Street { get; set; }
+      
         public int? numberStreet { get; set; }
 
         [Required(ErrorMessage = "Поле \"Ціна\" обов'язкове!")]
@@ -33,14 +37,14 @@ namespace REAgency.BLL.DTO.Object
         [Range(30, int.MaxValue)]
         public int Price { get; set; }
         public int currencyId { get; set; }
-        public string currencyName { get; set; }
+        //public string currencyName { get; set; }
 
         [Required(ErrorMessage = "Поле \"Загальга площа\" обов'язкове!")]
         [Display(Name = "Загальна площа")]
         [Range(0.1, double.MaxValue)]
         public double Area { get; set; }
         public int unitAreaId { get; set; }
-        public string areaName { get; set; }
+        //public string areaName { get; set; }
 
         [Required(ErrorMessage = "Поле \"Опис\" обов'язкове!")]
         [Display(Name = "Опис")]
@@ -49,5 +53,7 @@ namespace REAgency.BLL.DTO.Object
         public bool Status { get; set; }
         public DateTime Date { get; set; }
         public string? pathPhoto { get; set; }
+
+      
     }
 }
