@@ -14,7 +14,7 @@ namespace REAgency.BLL.Interfaces.Object
         Task<OfficeDTO> GetOfficeById(int id);
 
         Task CreateOffice(OfficeDTO officeDTO);
-        Task UpdateOffice(OfficeDTO officeDTO);
+        //Task UpdateOffice(OfficeDTO officeDTO);
         Task DeleteOffice(int id);
     }
 }

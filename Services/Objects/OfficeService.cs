@@ -12,21 +12,18 @@ using REAgency.DAL.Interfaces;
 
 namespace REAgency.BLL.Services.Objects
 {
-    public class HouseService : IHouseSevice
+    public class OfficeService : IOfficeService
     {
         IUnitOfWork Database { get; set; }
 
-        public HouseService(IUnitOfWork uow)
+        public OfficeService(IUnitOfWork uow)
         {
             Database = uow;
         }
 
-        public async Task<IEnumerable<HouseDTO>> GetAllHouses()
+        public async Task<IEnumerable<OfficeDTO>> GetOffices()
         {
-            //var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Flat, FlatDTO>()).CreateMapper();
-            //return mapper.Map<IEnumerable<Flat>, IEnumerable<FlatDTO>>(await Database.Flats.GetAll());
-
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<House, HouseDTO>()
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Office, OfficeDTO>()
                 .ForMember("Price", opt => opt.MapFrom(c => c.estateObject.Price))
                 .ForMember("countViews", opt => opt.MapFrom(c => c.estateObject.countViews))
                 .ForMember("clientId", opt => opt.MapFrom(c => c.estateObject.clientId))
@@ -45,64 +42,54 @@ namespace REAgency.BLL.Services.Objects
 
                 );
             var mapper = new Mapper(config);
-            return mapper.Map<IEnumerable<House>, IEnumerable<HouseDTO>>(await Database.Houses.GetAll());
+            return mapper.Map<IEnumerable<Office>, IEnumerable<OfficeDTO>>(await Database.Offices.GetAll());
 
 
 
 
         }
-        public async Task<HouseDTO> GetHouseById(int id)
+        public async Task<OfficeDTO> GetOfficeById(int id)
         {
-            var house = await Database.Houses.Get(id);
-            if (house == null)
-                throw new ValidationException("Wrong house!");
-            return new HouseDTO
+            var office = await Database.Offices.Get(id);
+            if (office == null)
+                throw new ValidationException("Wrong office!");
+            return new OfficeDTO
             {
-                Id = house.Id,
-                Floors = house.Floors,
-                Rooms = house.Rooms,
-                steadArea = house.steadArea,
-                kitchenArea = house.kitchenArea,
-                livingArea = house.livingArea
-
-
+                Id = office.Id
+             
             };
         }
 
 
-        public async Task CreateHouse(HouseDTO houseDTO)
+        public async Task CreateOffice(OfficeDTO officeDTO)
         {
-            var house = new House
+            var office = new Office
             {
-                Id = houseDTO.Id,
-                Floors = houseDTO.Floors,
-                Rooms = houseDTO.Rooms,
-                steadArea = houseDTO.steadArea,
-                kitchenArea = houseDTO.kitchenArea,
-                livingArea = houseDTO.livingArea
+                Id = officeDTO.Id
+               
             };
-            await Database.Houses.Create(house);
+            await Database.Offices.Create(office);
             await Database.Save();
         }
 
-        public async Task UpdateHouse(HouseDTO houseDTO)
-        {
-            var house = new House
-            {
-                 Id = houseDTO.Id,
-                Floors = houseDTO.Floors,
-                Rooms = houseDTO.Rooms,
-                steadArea = houseDTO.steadArea,
-                kitchenArea = houseDTO.kitchenArea,
-                livingArea = houseDTO.livingArea
-            };
-            Database.Houses.Update(house);
-            await Database.Save();
-        }
+        //public async Task Update(FlatDTO flatDTO)
+        //{
+        //    var flat = new Flat
+        //    {
+        //        Id = flatDTO.Id,
+        //        Floor = flatDTO.Floor,
+        //        Floors = flatDTO.Floors,
+        //        Rooms = flatDTO.Rooms,
+        //        kitchenArea = flatDTO.kitchenArea,
+        //        livingArea = flatDTO.livingArea
+        //    };
+        //    Database.Flats.Update(flat);
+        //    await Database.Save();
+        //}
 
-        public async Task DeleteHouse(int id)
+        public async Task DeleteOffice(int id)
         {
-            await Database.Houses.Delete(id);
+            await Database.Offices.Delete(id);
             await Database.Save();
         }
 
