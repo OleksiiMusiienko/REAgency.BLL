@@ -6,6 +6,10 @@ namespace REAgency.BLL.DTO.Object
 {
     public class EstateObjectDTO
     {
+        public enum ObjectType
+        {
+            Flat, Garage, House, Office, Parking, Premis, Room, Stead, Storage
+        }
         public int Id { get; set; }
         public int countViews { get; set; }  //количество просмотров обьекта считает средний слой
 
