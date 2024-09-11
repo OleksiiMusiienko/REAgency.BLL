@@ -58,8 +58,7 @@ namespace REAgency.BLL.Services.Objects
                 Status = estateObject.Status,
                 Date = estateObject.Date,
                 pathPhoto = estateObject.pathPhoto,
-                estateType = estateObject.estateType
-
+                estateType =(EstateObjectDTO.ObjectType) estateObject.estateType //костыль по типу enum
             };
         }
 
@@ -88,7 +87,7 @@ namespace REAgency.BLL.Services.Objects
                 Status = estateObjectDTO.Status,
                 Date = estateObjectDTO.Date,
                 pathPhoto = estateObjectDTO.pathPhoto,
-                estateType = estateObjectDTO.estateType.Value
+                estateType = (EstateObject.ObjectType)estateObjectDTO.estateType! //костыль по типу enum
             };
             await Database.EstateObjects.Create(estateObject);
             await Database.Save();
@@ -112,7 +111,7 @@ namespace REAgency.BLL.Services.Objects
                 Status = estateObjectDTO.Status,
                 Date = estateObjectDTO.Date,
                 pathPhoto = estateObjectDTO.pathPhoto,
-                estateType = estateObjectDTO.estateType.Value
+                estateType = (EstateObject.ObjectType)estateObjectDTO.estateType! //костыль по типу enum
             };
             Database.EstateObjects.Update(estateObject);
             await Database.Save();
