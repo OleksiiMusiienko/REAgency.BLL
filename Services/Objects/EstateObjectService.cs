@@ -57,7 +57,8 @@ namespace REAgency.BLL.Services.Objects
                 Description = estateObject.Description,
                 Status = estateObject.Status,
                 Date = estateObject.Date,
-                pathPhoto = estateObject.pathPhoto
+                pathPhoto = estateObject.pathPhoto,
+                estateType = estateObject.estateType
 
             };
         }
@@ -86,7 +87,8 @@ namespace REAgency.BLL.Services.Objects
                 Description = estateObjectDTO.Description,
                 Status = estateObjectDTO.Status,
                 Date = estateObjectDTO.Date,
-                pathPhoto = estateObjectDTO.pathPhoto
+                pathPhoto = estateObjectDTO.pathPhoto,
+                estateType = estateObjectDTO.estateType.Value
             };
             await Database.EstateObjects.Create(estateObject);
             await Database.Save();
@@ -109,7 +111,8 @@ namespace REAgency.BLL.Services.Objects
                 Description = estateObjectDTO.Description,
                 Status = estateObjectDTO.Status,
                 Date = estateObjectDTO.Date,
-                pathPhoto = estateObjectDTO.pathPhoto
+                pathPhoto = estateObjectDTO.pathPhoto,
+                estateType = estateObjectDTO.estateType.Value
             };
             Database.EstateObjects.Update(estateObject);
             await Database.Save();
