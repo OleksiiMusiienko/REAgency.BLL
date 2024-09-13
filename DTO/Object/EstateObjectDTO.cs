@@ -1,15 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static REAgency.DAL.Entities.Object.EstateObject;
+using REAgencyEnum;
 
 namespace REAgency.BLL.DTO.Object
 {
     public class EstateObjectDTO
     {
-        public enum ObjectType
-        {
-            Flat, Garage, House, Office, Parking, Premis, Room, Stead, Storage
-        }
         public int Id { get; set; }
         public int countViews { get; set; }  //количество просмотров обьекта считает средний слой
 
@@ -58,7 +55,7 @@ namespace REAgency.BLL.DTO.Object
         public bool Status { get; set; }
         public DateTime Date { get; set; }
         public string? pathPhoto { get; set; }
-        public ObjectType? estateType { get; set; }
+        public ObjectType estateType { get; set; }
 
     }
 }

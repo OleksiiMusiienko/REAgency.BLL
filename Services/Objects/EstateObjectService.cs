@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using REAgency.BLL.DTO.Object;
 using REAgency.BLL.Interfaces.Object;
-using REAgency.DAL.Entities;
 using REAgency.DAL.Entities.Object;
-using REAgency.DAL.Entities.Person;
 using REAgency.DAL.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace REAgency.BLL.Services.Objects
 {
@@ -58,7 +50,7 @@ namespace REAgency.BLL.Services.Objects
                 Status = estateObject.Status,
                 Date = estateObject.Date,
                 pathPhoto = estateObject.pathPhoto,
-                estateType =(EstateObjectDTO.ObjectType) estateObject.estateType //костыль по типу enum
+                estateType =estateObject.estateType 
             };
         }
 
@@ -87,7 +79,7 @@ namespace REAgency.BLL.Services.Objects
                 Status = estateObjectDTO.Status,
                 Date = estateObjectDTO.Date,
                 pathPhoto = estateObjectDTO.pathPhoto,
-                estateType = (EstateObject.ObjectType)estateObjectDTO.estateType! //костыль по типу enum
+                estateType = estateObjectDTO.estateType 
             };
             await Database.EstateObjects.Create(estateObject);
             await Database.Save();
@@ -111,7 +103,7 @@ namespace REAgency.BLL.Services.Objects
                 Status = estateObjectDTO.Status,
                 Date = estateObjectDTO.Date,
                 pathPhoto = estateObjectDTO.pathPhoto,
-                estateType = (EstateObject.ObjectType)estateObjectDTO.estateType! //костыль по типу enum
+                estateType = estateObjectDTO.estateType
             };
             Database.EstateObjects.Update(estateObject);
             await Database.Save();

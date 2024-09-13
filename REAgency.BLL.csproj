@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\REAgency.DAL\REAgency.DAL.csproj" />
+    <ProjectReference Include="..\REAgencyEnum\REAgencyEnum.csproj" />
   </ItemGroup>
 
 </Project>
