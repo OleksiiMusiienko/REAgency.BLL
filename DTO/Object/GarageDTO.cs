@@ -13,5 +13,7 @@ namespace REAgency.BLL.DTO.Object
         [Display(Name = "Поверховість")]
         [Range(0, int.MaxValue)]
         public int Floors { get; set; }
+
+        public int estateObjectId { get; set; }
     }
 }
