@@ -60,6 +60,18 @@ namespace REAgency.BLL.Services.Objects
             return mapper.Map<IEnumerable<EstateObject>, IEnumerable<EstateObjectDTO>>(await Database.EstateObjects.GetAllByEmployeeId(id));
         }
 
+        public async Task<IEnumerable<EstateObjectDTO>> GetEstateObjectByOperationId(int id)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<EstateObject, EstateObjectDTO>()).CreateMapper();
+            return mapper.Map<IEnumerable<EstateObject>, IEnumerable<EstateObjectDTO>>(await Database.EstateObjects.GetAllByOperationId(id));
+        }
+
+        public async Task<IEnumerable<EstateObjectDTO>> GetEstateObjectByLocalityId(int id)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<EstateObject, EstateObjectDTO>()).CreateMapper();
+            return mapper.Map<IEnumerable<EstateObject>, IEnumerable<EstateObjectDTO>>(await Database.EstateObjects.GetAllByLocalityId(id));
+        }
+
 
         public async Task CreateEstateObject(EstateObjectDTO estateObjectDTO)
         {

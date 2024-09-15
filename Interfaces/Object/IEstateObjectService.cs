@@ -12,7 +12,10 @@ namespace REAgency.BLL.Interfaces.Object
         Task<IEnumerable<EstateObjectDTO>> GetAllEstateObjects();
         Task<EstateObjectDTO> GetEstateObjectById(int id);
         Task<IEnumerable<EstateObjectDTO>> GetEstateObjectByEmployeeId(int employeeId);
-       
+        Task<IEnumerable<EstateObjectDTO>> GetEstateObjectByOperationId(int employeeId);
+
+        Task<IEnumerable<EstateObjectDTO>> GetEstateObjectByLocalityId(int employeeId);
+
         Task CreateEstateObject(EstateObjectDTO estateObjectsDTO);
         Task UpdateEstateObject(EstateObjectDTO estateObjectsDTO);
         Task DeleteEstateObject(int id);

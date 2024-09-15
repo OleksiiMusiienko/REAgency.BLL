@@ -103,16 +103,13 @@ namespace REAgency.BLL.Services.Objects
             Database.Houses.Update(house);
             await Database.Save();
         }
-        public async Task UpdateHouse(HouseDTO officeDTO)
-        {
-
-        }
+       
         public async Task DeleteHouse(int id)
         {
             await Database.Houses.Delete(id);
             await Database.Save();
         }
 
-        }
+        
     }
 }

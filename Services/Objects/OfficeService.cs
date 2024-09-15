@@ -8,10 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using REAgency.BLL.DTO.Object;
-using REAgency.BLL.Interfaces.Object;
+
 using REAgency.DAL.Entities.Object;
-using REAgency.DAL.Interfaces;
 
 namespace REAgency.BLL.Services.Objects
 {
@@ -91,13 +89,13 @@ namespace REAgency.BLL.Services.Objects
         //    await Database.Save();
         //}
 
-        }
+        
         public async Task DeleteOffice(int id)
         {
             await Database.Offices.Delete(id);
             await Database.Save();
         }
 
-        }
+        
     }
 }
