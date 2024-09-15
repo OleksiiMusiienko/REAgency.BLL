@@ -1,4 +1,7 @@
-﻿using System;
+﻿using REAgency.BLL.DTO.Object;
+using REAgency.BLL.Interfaces.Object;
+using REAgency.DAL.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -51,6 +54,7 @@ namespace REAgency.BLL.Services.Objects
 
 
         }
+
         public async Task<HouseDTO> GetHouseById(int id)
         {
             var house = await Database.Houses.Get(id);
@@ -99,12 +103,16 @@ namespace REAgency.BLL.Services.Objects
             Database.Houses.Update(house);
             await Database.Save();
         }
+        public async Task UpdateHouse(HouseDTO officeDTO)
+        {
 
+        }
         public async Task DeleteHouse(int id)
         {
             await Database.Houses.Delete(id);
             await Database.Save();
         }
 
+        }
     }
 }

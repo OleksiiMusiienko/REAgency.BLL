@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static REAgency.DAL.Entities.Object.EstateObject;
+using REAgencyEnum;
 
 namespace REAgency.BLL.DTO.Object
 {
@@ -53,7 +55,7 @@ namespace REAgency.BLL.DTO.Object
         public bool Status { get; set; }
         public DateTime Date { get; set; }
         public string? pathPhoto { get; set; }
+        public ObjectType estateType { get; set; }
 
-      
     }
 }

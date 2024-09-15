@@ -1,4 +1,7 @@
-﻿using System;
+﻿using REAgency.BLL.DTO.Object;
+using REAgency.BLL.Interfaces.Object;
+using REAgency.DAL.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -48,6 +51,7 @@ namespace REAgency.BLL.Services.Objects
 
 
         }
+
         public async Task<GarageDTO> GetGarageById(int id)
         {
             var garage = await Database.Garages.Get(id);
@@ -80,7 +84,7 @@ namespace REAgency.BLL.Services.Objects
             {
                 Id = garageDTO.Id,
                 Floors = garageDTO.Floors
-              
+
             };
             Database.Garages.Update(garage);
             await Database.Save();

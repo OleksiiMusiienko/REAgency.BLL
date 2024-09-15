@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using REAgency.BLL.DTO.Object;
 using REAgency.BLL.Interfaces.Object;
-using REAgency.DAL.Entities;
 using REAgency.DAL.Entities.Object;
-using REAgency.DAL.Entities.Person;
 using REAgency.DAL.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace REAgency.BLL.Services.Objects
 {
@@ -57,8 +49,8 @@ namespace REAgency.BLL.Services.Objects
                 Description = estateObject.Description,
                 Status = estateObject.Status,
                 Date = estateObject.Date,
-                pathPhoto = estateObject.pathPhoto
-
+                pathPhoto = estateObject.pathPhoto,
+                estateType =estateObject.estateType 
             };
         }
 
@@ -86,7 +78,8 @@ namespace REAgency.BLL.Services.Objects
                 Description = estateObjectDTO.Description,
                 Status = estateObjectDTO.Status,
                 Date = estateObjectDTO.Date,
-                pathPhoto = estateObjectDTO.pathPhoto
+                pathPhoto = estateObjectDTO.pathPhoto,
+                estateType = estateObjectDTO.estateType 
             };
             await Database.EstateObjects.Create(estateObject);
             await Database.Save();
@@ -109,7 +102,8 @@ namespace REAgency.BLL.Services.Objects
                 Description = estateObjectDTO.Description,
                 Status = estateObjectDTO.Status,
                 Date = estateObjectDTO.Date,
-                pathPhoto = estateObjectDTO.pathPhoto
+                pathPhoto = estateObjectDTO.pathPhoto,
+                estateType = estateObjectDTO.estateType
             };
             Database.EstateObjects.Update(estateObject);
             await Database.Save();
