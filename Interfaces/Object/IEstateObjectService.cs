@@ -15,6 +15,7 @@ namespace REAgency.BLL.Interfaces.Object
         Task<IEnumerable<EstateObjectDTO>> GetEstateObjectByOperationId(int operationId);
 
         Task<IEnumerable<EstateObjectDTO>> GetEstateObjectByLocalityId(int localityId);
+        Task<IEnumerable<EstateObjectDTO>> GetEstateObjectByEstateTypeId(int estateTypeId);
 
         Task<IEnumerable<EstateObjectDTO>> GetEstateObjectByOperationAndLocalityId(int operationId,int localityId);
 
