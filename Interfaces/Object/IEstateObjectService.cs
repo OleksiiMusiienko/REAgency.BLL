@@ -18,6 +18,8 @@ namespace REAgency.BLL.Interfaces.Object
         Task<IEnumerable<EstateObjectDTO>> GetEstateObjectByEstateTypeId(int estateTypeId);
 
         Task<IEnumerable<EstateObjectDTO>> GetEstateObjectByOperationAndLocalityId(int operationId,int localityId);
+        Task<IEnumerable<EstateObjectDTO>> GetFilteredEstateObjects(int? typeId, int? operationTypeId, int? localityId, int? minPrice,
+            int? maxPrice, double? minArea, double? maxArea);
 
         Task CreateEstateObject(EstateObjectDTO estateObjectsDTO);
         Task UpdateEstateObject(EstateObjectDTO estateObjectsDTO);
