@@ -29,7 +29,10 @@ namespace REAgency.BLL.DTO.Object
         //public string countryName { get; set; }
         //public string regionName { get; set; }
         //public string districtName { get; set; }
-        //public string localityName { get; set; }
+        //
+        
+
+        public int localityId { get; set; }
         public string? Street { get; set; }
       
         public int? numberStreet { get; set; }

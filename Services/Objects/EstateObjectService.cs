@@ -20,12 +20,13 @@ namespace REAgency.BLL.Services.Objects
         {
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<EstateObject, EstateObjectDTO>()).CreateMapper();
             return mapper.Map<IEnumerable<EstateObject>, IEnumerable<EstateObjectDTO>>(await Database.EstateObjects.GetAll());
+
         }
         public async Task<EstateObjectDTO> GetEstateObjectById(int id)
         {
             var estateObject = await Database.EstateObjects.Get(id);
             if (estateObject == null)
-                throw new ValidationException("Wrong flat!");
+                throw new ValidationException("Wrong estate object!");
             return new EstateObjectDTO
             {
                 Id = estateObject.Id,

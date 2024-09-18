@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using REAgency.DAL.Entities.Object;
 
 namespace REAgency.BLL.DTO.Object
 {
@@ -15,8 +16,5 @@ namespace REAgency.BLL.DTO.Object
         [Required(ErrorMessage = "Поле \"Землекористування\" обов'язкове!")]
         public LandUse Use { get; set; }
     }
-    public enum LandUse
-    {
-        // here would be a allowed items for field "use"
-    }
+    
 }
