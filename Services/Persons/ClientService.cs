@@ -105,21 +105,31 @@ namespace REAgency.BLL.Services.Persons
                 Salt = client.Salt,
             };
         }
+        public async Task<ClientDTO> GetByPhone(string phone)
+        {
+            var client = await Database.Clients.GetByPhone(phone);
+            if (client == null)
+            {
+                ClientDTO Client = new ClientDTO();
+                return Client;
+            }
+            return new ClientDTO
+            {
+                Id = client.Id,
+                Name = client.Name,
+                Phone1 = client.Phone1,
+                Email = client.Email,
+                userStatus = client.userStatus,
+                operationId = client.operationId,
+                employeeId = client.employeeId,
+                status = client.status,
+                Password = client.Password,
+                Salt = client.Salt,
+            };
+        }
 
         public async Task CreateClient(ClientDTO clientDTO)
         {
-            //byte[] saltbuf = new byte[16];
-            //RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
-            //randomNumberGenerator.GetBytes(saltbuf);
-            //StringBuilder sb = new StringBuilder(16);
-            //for (int i = 0; i < 16; i++)
-            //    sb.Append(string.Format("{0:X2}", saltbuf[i]));
-            //string salt = sb.ToString();
-            //byte[] password = Encoding.Unicode.GetBytes(salt + clientDTO.Password);
-            //byte[] byteHash = SHA256.HashData(password);
-            //StringBuilder hash = new StringBuilder(byteHash.Length);
-            //for (int i = 0; i < byteHash.Length; i++)
-            //    hash.Append(string.Format("{0:X2}", byteHash[i]));
             var client = new Client
             {
                 Id = clientDTO.Id,
@@ -127,8 +137,8 @@ namespace REAgency.BLL.Services.Persons
                 Phone1 = clientDTO.Phone1,
                 Email = clientDTO.Email,
                 userStatus = clientDTO.userStatus,
-                //operationId = clientDTO.operationId,
-                //employeeId = clientDTO.employeeId,
+                operationId = clientDTO.operationId,
+                employeeId = clientDTO.employeeId,
                 status = clientDTO.status,
                 Password = clientDTO.Password,
                 Salt = clientDTO.Salt

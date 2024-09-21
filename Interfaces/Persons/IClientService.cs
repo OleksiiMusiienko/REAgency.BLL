@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using REAgency.BLL.DTO.Persons;
+using REAgency.DAL.Entities.Person;
 
 namespace REAgency.BLL.Interfaces.Persons
 {
@@ -15,6 +16,7 @@ namespace REAgency.BLL.Interfaces.Persons
 
         Task<ClientDTO> GetClientByName(string name);
         Task<ClientDTO> GetClientByEmail(string email);
+        Task<ClientDTO> GetByPhone(string phone);
 
         Task CreateClient(ClientDTO clientDTO);
         Task UpdateClient(ClientDTO clientDTO);
