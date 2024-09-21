@@ -1,7 +1,4 @@
-﻿using REAgency.BLL.DTO.Object;
-using REAgency.BLL.Interfaces.Object;
-using REAgency.DAL.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,18 +12,19 @@ using REAgency.DAL.Interfaces;
 
 namespace REAgency.BLL.Services.Objects
 {
-    public class GarageService : IGarageService
+    public class SteadService : ISteadService
     {
         IUnitOfWork Database { get; set; }
 
-        public GarageService(IUnitOfWork uow)
+        public SteadService(IUnitOfWork uow)
         {
             Database = uow;
         }
 
-        public async Task<IEnumerable<GarageDTO>> GetGarages()
+        public async Task<IEnumerable<SteadDTO>> GetSteads()
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Garage, GarageDTO>()
+            
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Stead, SteadDTO>()
                 .ForMember("Price", opt => opt.MapFrom(c => c.estateObject.Price))
                 .ForMember("countViews", opt => opt.MapFrom(c => c.estateObject.countViews))
                 .ForMember("clientId", opt => opt.MapFrom(c => c.estateObject.clientId))
@@ -45,55 +43,56 @@ namespace REAgency.BLL.Services.Objects
 
                 );
             var mapper = new Mapper(config);
-            return mapper.Map<IEnumerable<Garage>, IEnumerable<GarageDTO>>(await Database.Garages.GetAll());
+            return mapper.Map<IEnumerable<Stead>, IEnumerable<SteadDTO>>(await Database.Steads.GetAll());
 
 
 
 
         }
-
-        public async Task<GarageDTO> GetGarageById(int id)
+        public async Task<SteadDTO> GetSteadById(int id)
         {
-            var garage = await Database.Garages.Get(id);
-            if (garage == null)
-                throw new ValidationException("Wrong office!");
-            return new GarageDTO
+            var stead = await Database.Steads.Get(id);
+            if (stead == null)
+                throw new ValidationException("Wrong stead!");
+            return new SteadDTO
             {
-                Id = garage.Id,
-                Floors = garage.Floors
+               Id = stead.Id,
+               Cadastr = stead.Cadastr,
+               Use = stead.Use
 
             };
         }
 
 
-        public async Task CreateGarage(GarageDTO garageDTO)
+        public async Task CreateStead(SteadDTO steadDTO)
         {
-            var garage = new Garage
+            var stead = new Stead
             {
-                Id = garageDTO.Id,
-                Floors = garageDTO.Floors
-
+                Id = steadDTO.Id,
+                Cadastr = steadDTO.Cadastr,
+                Use = steadDTO.Use
             };
-            await Database.Garages.Create(garage);
+            await Database.Steads.Create(stead);
             await Database.Save();
         }
 
-        public async Task UpdateGarage(GarageDTO garageDTO)
+        public async Task UpdateStead(SteadDTO steadDTO)
         {
-            var garage = new Garage
+            var stead = new Stead
             {
-                Id = garageDTO.Id,
-                Floors = garageDTO.Floors
-
+                Id = steadDTO.Id,
+                Cadastr = steadDTO.Cadastr,
+                Use = steadDTO.Use
             };
-            Database.Garages.Update(garage);
+            Database.Steads.Update(stead);
             await Database.Save();
         }
 
-        public async Task DeleteGarage(int id)
+        public async Task DeleteStead(int id)
         {
-            await Database.Garages.Delete(id);
+            await Database.Steads.Delete(id);
             await Database.Save();
         }
+
     }
 }

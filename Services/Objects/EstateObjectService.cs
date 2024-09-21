@@ -20,12 +20,13 @@ namespace REAgency.BLL.Services.Objects
         {
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<EstateObject, EstateObjectDTO>()).CreateMapper();
             return mapper.Map<IEnumerable<EstateObject>, IEnumerable<EstateObjectDTO>>(await Database.EstateObjects.GetAll());
+
         }
         public async Task<EstateObjectDTO> GetEstateObjectById(int id)
         {
             var estateObject = await Database.EstateObjects.Get(id);
             if (estateObject == null)
-                throw new ValidationException("Wrong flat!");
+                throw new ValidationException("Wrong estate object!");
             return new EstateObjectDTO
             {
                 Id = estateObject.Id,
@@ -60,6 +61,36 @@ namespace REAgency.BLL.Services.Objects
             return mapper.Map<IEnumerable<EstateObject>, IEnumerable<EstateObjectDTO>>(await Database.EstateObjects.GetAllByEmployeeId(id));
         }
 
+        public async Task<IEnumerable<EstateObjectDTO>> GetEstateObjectByOperationId(int id)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<EstateObject, EstateObjectDTO>()).CreateMapper();
+            return mapper.Map<IEnumerable<EstateObject>, IEnumerable<EstateObjectDTO>>(await Database.EstateObjects.GetAllByOperationId(id));
+        }
+
+        public async Task<IEnumerable<EstateObjectDTO>> GetEstateObjectByLocalityId(int id)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<EstateObject, EstateObjectDTO>()).CreateMapper();
+            return mapper.Map<IEnumerable<EstateObject>, IEnumerable<EstateObjectDTO>>(await Database.EstateObjects.GetAllByLocalityId(id));
+        }
+
+        public async Task<IEnumerable<EstateObjectDTO>> GetEstateObjectByEstateTypeId(int id)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<EstateObject, EstateObjectDTO>()).CreateMapper();
+            return mapper.Map<IEnumerable<EstateObject>, IEnumerable<EstateObjectDTO>>(await Database.EstateObjects.GetAllByEstateTypeId(id));
+        }
+        public async Task<IEnumerable<EstateObjectDTO>> GetEstateObjectByOperationAndLocalityId(int opId, int localityId)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<EstateObject, EstateObjectDTO>()).CreateMapper();
+            return mapper.Map<IEnumerable<EstateObject>, IEnumerable<EstateObjectDTO>>(await Database.EstateObjects.GetAllByOperationAndLocalityId(opId,localityId));
+        }
+
+        public async Task<IEnumerable<EstateObjectDTO>> GetFilteredEstateObjects(int? typeId, int? operationTypeId, int? localityId, int? minPrice,
+            int? maxPrice, double? minArea, double? maxArea)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<EstateObject, EstateObjectDTO>()).CreateMapper();
+            return mapper.Map<IEnumerable<EstateObject>, IEnumerable<EstateObjectDTO>>(await Database.EstateObjects.GetAllByFiltered(typeId, operationTypeId, localityId,
+                minPrice, maxPrice, minArea,maxArea));
+        }
 
         public async Task CreateEstateObject(EstateObjectDTO estateObjectDTO)
         {
