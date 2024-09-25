@@ -29,7 +29,7 @@ namespace REAgency.BLL.Services.Locations
                 Id = location.Id,
                 CountryId = location.CountryId,
                 RegionId = location.RegionId,
-                LocalityId = location.LocalityId
+                LocalityId = (int)location.LocalityId
             };
 
         }
