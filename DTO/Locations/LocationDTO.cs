@@ -11,6 +11,7 @@ namespace REAgency.BLL.DTO.Locations
         public int Id { get; set; }
         public int? CountryId { get; set; }
         public int? RegionId { get; set; }
+        public int DistrictId { get; set; }
         public int LocalityId { get; set; }
     }
 }

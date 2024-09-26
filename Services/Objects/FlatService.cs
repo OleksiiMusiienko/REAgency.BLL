@@ -71,13 +71,77 @@ namespace REAgency.BLL.Services.Objects
                 Floors = flat.Floors,
                 Rooms = flat.Rooms,
                 kitchenArea = flat.kitchenArea,
-                livingArea = flat.livingArea
-
+                livingArea = flat.livingArea,
+                countViews = flat.estateObject.countViews,
+                //clientName = estateObject.Client.Name,
+                //clientPhone = estateObject.Client.Phone1,
+                employeeId = flat.estateObject.employeeId,
+                //employeeName = estateObject.Employee.Name,
+                //employeePhone = estateObject.Employee.Phone1,
+                operationId = flat.estateObject.operationId,
+                //operationName = estateObject.Operation.Name,
+                locationId = flat.estateObject.locationId,
+                Street = flat.estateObject.Street,
+                numberStreet = flat.estateObject.numberStreet,
+                Price = flat.estateObject.Price,
+                currencyId = flat.estateObject.currencyId,
+                //currencyName = estateObject.Currency.Name,
+                Area = flat.estateObject.Area,
+                unitAreaId = flat.estateObject.unitAreaId,
+                //areaName = estateObject.unitArea.Name,
+                Description = flat.estateObject.Description,
+                Status = flat.estateObject.Status,
+                Date = flat.estateObject.Date,
+                pathPhoto = flat.estateObject.pathPhoto,
+                estateType = flat.estateObject.estateType,
+               
 
             };
         }
      
+        public async Task<FlatDTO> GetFlatByEstateObjectId(int id)
+        {
+            var flat = await Database.Flats.GetByEstateObjectId(id);
+            if (flat == null)
+                throw new ValidationException("Wrong flat!");
+            return new FlatDTO
+            {
+                Id = flat.Id,
+                Floor = flat.Floor,
+                Floors = flat.Floors,
+                Rooms = flat.Rooms,
+                kitchenArea = flat.kitchenArea,
+                livingArea = flat.livingArea,
+                countViews = flat.estateObject.countViews,
+                clientId = flat.estateObject.clientId,
+                //clientPhone = estateObject.Client.Phone1,
+                employeeId = flat.estateObject.employeeId,
+                //employeeName = estateObject.Employee.Name,
+                //employeePhone = estateObject.Employee.Phone1,
+                operationId = flat.estateObject.operationId,
+                //operationName = estateObject.Operation.Name,
+                locationId = flat.estateObject.locationId,
+                RegionId = (int)flat.estateObject.Location.RegionId, 
+                LocalityId = (int)flat.estateObject.Location.LocalityId,
+                DistrictId = (int)flat.estateObject.Location.DistrictId,
+                Street = flat.estateObject.Street,
+                numberStreet = flat.estateObject.numberStreet,
+                Price = flat.estateObject.Price,
+                currencyId = flat.estateObject.currencyId,
+                //currencyName = estateObject.Currency.Name,
+                Area = flat.estateObject.Area,
+                unitAreaId = flat.estateObject.unitAreaId,
+                //areaName = estateObject.unitArea.Name,
+                Description = flat.estateObject.Description,
+                Status = flat.estateObject.Status,
+                Date = flat.estateObject.Date,
+                pathPhoto = flat.estateObject.pathPhoto,
+                estateType = flat.estateObject.estateType,
+                estateObjectId = (int)flat.estateObjectId
 
+
+            };
+        }
         public async Task CreateFlat(FlatDTO flatDTO)
         {
             var flat = new Flat
@@ -97,12 +161,13 @@ namespace REAgency.BLL.Services.Objects
         {
             var flat = new Flat
             {
-                Id = flatDTO.Id,
+                Id = (int)flatDTO.Id,
                 Floor = flatDTO.Floor,
                 Floors = flatDTO.Floors,
                 Rooms = flatDTO.Rooms,
                 kitchenArea = flatDTO.kitchenArea,
-                livingArea = flatDTO.livingArea
+                livingArea = flatDTO.livingArea,
+                estateObjectId = flatDTO.estateObjectId
             };
             Database.Flats.Update(flat);
             await Database.Save();

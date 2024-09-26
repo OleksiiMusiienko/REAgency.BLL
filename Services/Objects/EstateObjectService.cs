@@ -123,9 +123,11 @@ namespace REAgency.BLL.Services.Objects
                 Id = estateObjectDTO.Id,
                 countViews = estateObjectDTO.countViews,
                 employeeId = estateObjectDTO.employeeId,
+                clientId = estateObjectDTO.clientId,
                 operationId = estateObjectDTO.operationId,
                 locationId = estateObjectDTO.locationId,
                 Street = estateObjectDTO.Street,
+                numberStreet = (int)estateObjectDTO.numberStreet,
                 Price = estateObjectDTO.Price,
                 currencyId = estateObjectDTO.currencyId,
                 Area = estateObjectDTO.Area,
@@ -136,8 +138,11 @@ namespace REAgency.BLL.Services.Objects
                 pathPhoto = estateObjectDTO.pathPhoto,
                 estateType = estateObjectDTO.estateType
             };
+
             Database.EstateObjects.Update(estateObject);
+            
             await Database.Save();
+
         }
 
         public async Task DeleteEstateObject(int id)
