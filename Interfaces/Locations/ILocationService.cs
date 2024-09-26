@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using REAgency.BLL.DTO.Locations;
+using REAgency.DAL.Entities.Locations;
 
 
 namespace REAgency.BLL.Interfaces.Locations
@@ -15,5 +16,6 @@ namespace REAgency.BLL.Interfaces.Locations
         Task CreateLocation(LocationDTO locationDTO);
         Task UpdateLocation(LocationDTO locationDTO);
         Task DeleteLocation(int id);
+        Task<LocationDTO> GetByDateTime(DateTime date);
     }
 }

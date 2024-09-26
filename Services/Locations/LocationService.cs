@@ -1,9 +1,9 @@
-﻿using REAgency.BLL.DTO.Locations;
+﻿using AutoMapper;
+using REAgency.BLL.DTO.Locations;
 using REAgency.BLL.Infrastructure;
 using REAgency.BLL.Interfaces.Locations;
 using REAgency.DAL.Entities.Locations;
 using REAgency.DAL.Interfaces;
-using AutoMapper;
 
 namespace REAgency.BLL.Services.Locations
 {
@@ -40,7 +40,8 @@ namespace REAgency.BLL.Services.Locations
                 Id = locationDTO.Id,
                 CountryId = locationDTO.CountryId,
                 RegionId = locationDTO.RegionId,
-                LocalityId = locationDTO.LocalityId
+                LocalityId = locationDTO.LocalityId,
+                Date = locationDTO.Date
             };
             await Database.Locations.Create(location);
             await Database.Save();
@@ -61,6 +62,20 @@ namespace REAgency.BLL.Services.Locations
         {
             await Database.Locations.Delete(id);
             await Database.Save();
+        }
+        public async Task<LocationDTO> GetByDateTime(DateTime date)
+        {
+            var locations = await Database.Locations.GetByDateTime(date);
+            if (locations == null)
+                throw new ValidationException("Wrong location!", "");
+            return new LocationDTO
+            {
+                Id = locations.Id,
+                CountryId = locations.CountryId,
+                RegionId = locations.RegionId,
+                LocalityId = locations.LocalityId,
+                Date =locations.Date
+            };
         }
     }
 }
