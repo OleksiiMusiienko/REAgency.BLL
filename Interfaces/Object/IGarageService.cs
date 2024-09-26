@@ -13,6 +13,8 @@ namespace REAgency.BLL.Interfaces.Object
 
         Task<GarageDTO> GetGarageById(int id);
 
+       
+
         Task CreateGarage(GarageDTO garageDTO);
         Task UpdateGarage(GarageDTO garageDTO);
         Task DeleteGarage(int id);

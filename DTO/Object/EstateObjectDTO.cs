@@ -26,13 +26,11 @@ namespace REAgency.BLL.DTO.Object
 
        //по локациям отображаем страну, область, район, населенный пункт
         public int locationId { get; set; }
-        //public string countryName { get; set; }
-        //public string regionName { get; set; }
-        //public string districtName { get; set; }
-        //
-        
+        public int countryId { get; set; }
+        public int RegionId{ get; set; }
+        public int DistrictId { get; set; }
 
-        public int localityId { get; set; }
+        public int LocalityId { get; set; }
         public string? Street { get; set; }
       
         public int? numberStreet { get; set; }
@@ -58,7 +56,7 @@ namespace REAgency.BLL.DTO.Object
         public bool Status { get; set; }
         public DateTime Date { get; set; }
         public string? pathPhoto { get; set; }
-        public ObjectType estateType { get; set; }
+        public ObjectType estateType { get; set; } 
 
     }
 }
