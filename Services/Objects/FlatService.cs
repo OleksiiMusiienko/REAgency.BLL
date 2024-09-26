@@ -87,7 +87,8 @@ namespace REAgency.BLL.Services.Objects
                 Floors = flatDTO.Floors,
                 Rooms = flatDTO.Rooms,
                 kitchenArea = flatDTO.kitchenArea,
-                livingArea = flatDTO.livingArea
+                livingArea = flatDTO.livingArea,
+                estateObjectId = flatDTO.estateObjectId
             };
             await Database.Flats.Create(flat);
             await Database.Save();

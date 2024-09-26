@@ -92,16 +92,49 @@ namespace REAgency.BLL.Services.Objects
                 minPrice, maxPrice, minArea,maxArea));
         }
 
+        public async Task<EstateObjectDTO> GetByDateTime(DateTime date)
+        {
+            var estateObject = await Database.EstateObjects.GetByDateTime(date);
+            if (estateObject == null)
+                throw new ValidationException("Wrong estate object!");
+            return new EstateObjectDTO
+            {
+                Id = estateObject.Id,
+                countViews = estateObject.countViews,
+                //clientName = estateObject.Client.Name,
+                //clientPhone = estateObject.Client.Phone1,
+                employeeId = estateObject.employeeId,
+                //employeeName = estateObject.Employee.Name,
+                //employeePhone = estateObject.Employee.Phone1,
+                operationId = estateObject.operationId,
+                //operationName = estateObject.Operation.Name,
+                locationId = estateObject.locationId,
+                Street = estateObject.Street,
+                numberStreet = estateObject.numberStreet,
+                Price = estateObject.Price,
+                currencyId = estateObject.currencyId,
+                //currencyName = estateObject.Currency.Name,
+                Area = estateObject.Area,
+                unitAreaId = estateObject.unitAreaId,
+                //areaName = estateObject.unitArea.Name,
+                Description = estateObject.Description,
+                Status = estateObject.Status,
+                Date = estateObject.Date,
+                pathPhoto = estateObject.pathPhoto,
+                estateType = estateObject.estateType
+            };
+        }
         public async Task CreateEstateObject(EstateObjectDTO estateObjectDTO)
         {
             var estateObject = new EstateObject
             {
-                Id = estateObjectDTO.Id,
+                Id = estateObjectDTO.Id,                
+                clientId = estateObjectDTO.clientId,
                 countViews = estateObjectDTO.countViews,
                 employeeId = estateObjectDTO.employeeId,
                 operationId = estateObjectDTO.operationId,
                 locationId = estateObjectDTO.locationId,
-                Street = estateObjectDTO.Street,
+                Street = estateObjectDTO.Street,              
                 Price = estateObjectDTO.Price,
                 currencyId = estateObjectDTO.currencyId,
                 Area = estateObjectDTO.Area,
