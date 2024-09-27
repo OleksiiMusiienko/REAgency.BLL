@@ -24,5 +24,6 @@ namespace REAgency.BLL.Interfaces.Object
         Task CreateEstateObject(EstateObjectDTO estateObjectsDTO);
         Task UpdateEstateObject(EstateObjectDTO estateObjectsDTO);
         Task DeleteEstateObject(int id);
+        Task UpdateEstateObjectPath(EstateObjectDTO estateObjectsDTO);
     }
 }
