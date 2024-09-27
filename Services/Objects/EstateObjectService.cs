@@ -100,6 +100,7 @@ namespace REAgency.BLL.Services.Objects
             return new EstateObjectDTO
             {
                 Id = estateObject.Id,
+                clientId = estateObject.clientId,
                 countViews = estateObject.countViews,
                 //clientName = estateObject.Client.Name,
                 //clientPhone = estateObject.Client.Phone1,

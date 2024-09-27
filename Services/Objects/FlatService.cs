@@ -104,8 +104,8 @@ namespace REAgency.BLL.Services.Objects
             var flat = await Database.Flats.GetByEstateObjectId(id);
             if (flat == null)
                 throw new ValidationException("Wrong flat!");
-            return new FlatDTO
-            {
+            
+            return new FlatDTO {
                 Id = flat.Id,
                 Floor = flat.Floor,
                 Floors = flat.Floors,
@@ -121,7 +121,8 @@ namespace REAgency.BLL.Services.Objects
                 operationId = flat.estateObject.operationId,
                 //operationName = estateObject.Operation.Name,
                 locationId = flat.estateObject.locationId,
-                RegionId = (int)flat.estateObject.Location.RegionId, 
+
+                RegionId = (int)flat.estateObject.Location.RegionId,
                 LocalityId = (int)flat.estateObject.Location.LocalityId,
                 DistrictId = (int)flat.estateObject.Location.DistrictId,
                 Street = flat.estateObject.Street,
@@ -138,9 +139,8 @@ namespace REAgency.BLL.Services.Objects
                 pathPhoto = flat.estateObject.pathPhoto,
                 estateType = flat.estateObject.estateType,
                 estateObjectId = (int)flat.estateObjectId
-
-
             };
+           
         }
         public async Task CreateFlat(FlatDTO flatDTO)
         {

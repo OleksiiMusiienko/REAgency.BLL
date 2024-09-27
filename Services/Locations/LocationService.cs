@@ -40,6 +40,7 @@ namespace REAgency.BLL.Services.Locations
                 Id = locationDTO.Id,
                 CountryId = locationDTO.CountryId,
                 RegionId = locationDTO.RegionId,
+                DistrictId = locationDTO.DistrictId,
                 LocalityId = locationDTO.LocalityId,
                 Date = locationDTO.Date
             };
@@ -51,6 +52,7 @@ namespace REAgency.BLL.Services.Locations
             var location = new Location
             {
                 Id = locationDTO.Id,
+                CountryId = locationDTO.CountryId,
                 RegionId = locationDTO.RegionId,
                 DistrictId = locationDTO.DistrictId,
                 LocalityId = locationDTO.LocalityId
@@ -74,6 +76,7 @@ namespace REAgency.BLL.Services.Locations
                 CountryId = locations.CountryId,
                 RegionId = locations.RegionId,
                 LocalityId = locations.LocalityId,
+                DistrictId = locations.DistrictId,
                 Date =locations.Date
             };
         }
