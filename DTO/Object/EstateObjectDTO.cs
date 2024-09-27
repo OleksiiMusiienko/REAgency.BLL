@@ -27,10 +27,10 @@ namespace REAgency.BLL.DTO.Object
        //по локациям отображаем страну, область, район, населенный пункт
         public int locationId { get; set; }
         public int countryId { get; set; }
-        public int RegionId{ get; set; }
-        public int DistrictId { get; set; }
+        public int? RegionId{ get; set; }
+        public int ?DistrictId { get; set; }
 
-        public int LocalityId { get; set; }
+        public int? LocalityId { get; set; }
         public string? Street { get; set; }
       
         public int? numberStreet { get; set; }
