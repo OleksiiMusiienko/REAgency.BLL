@@ -14,8 +14,8 @@ namespace REAgency.BLL.DTO.Object
         //(для сотрудника или админа) имя и телефон клиента
 
         public int clientId { get; set; }
-        //public string clientName { get; set; } 
-        //public string clientPhone { get; set; }
+        public string clientName { get; set; } 
+        public string clientPhone { get; set; }
         //приходит сотрудник, отображаем имя и телефон для всех
         public int employeeId { get; set; }
         //public string employeeName { get; set; }

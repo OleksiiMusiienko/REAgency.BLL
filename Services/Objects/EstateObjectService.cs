@@ -18,7 +18,14 @@ namespace REAgency.BLL.Services.Objects
 
         public async Task<IEnumerable<EstateObjectDTO>> GetAllEstateObjects()
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<EstateObject, EstateObjectDTO>()).CreateMapper();
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<EstateObject, EstateObjectDTO>()
+               
+               .ForMember("clientName", opt => opt.MapFrom(c => c.Client.Name))
+               .ForMember("clientPhone", opt => opt.MapFrom(c => c.Client.Phone1))
+
+
+               );
+            var mapper = new Mapper(config);
             return mapper.Map<IEnumerable<EstateObject>, IEnumerable<EstateObjectDTO>>(await Database.EstateObjects.GetAll());
 
         }
