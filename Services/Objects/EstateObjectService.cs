@@ -191,6 +191,28 @@ namespace REAgency.BLL.Services.Objects
             await Database.EstateObjects.Delete(id);
             await Database.Save();
         }
-
+        public async Task UpdateEstateObjectPath(EstateObjectDTO estateObjectDTO)
+        {
+            var estateObject = new EstateObject
+            {
+                Id = estateObjectDTO.Id,
+                countViews = estateObjectDTO.countViews,
+                employeeId = estateObjectDTO.employeeId,
+                operationId = estateObjectDTO.operationId,
+                locationId = estateObjectDTO.locationId,
+                Street = estateObjectDTO.Street,
+                Price = estateObjectDTO.Price,
+                currencyId = estateObjectDTO.currencyId,
+                Area = estateObjectDTO.Area,
+                unitAreaId = estateObjectDTO.unitAreaId,
+                Description = estateObjectDTO.Description,
+                Status = estateObjectDTO.Status,
+                Date = estateObjectDTO.Date,
+                pathPhoto = estateObjectDTO.pathPhoto,
+                estateType = estateObjectDTO.estateType
+            };
+            Database.EstateObjects.UpdatePathFoto(estateObject);
+            await Database.Save();
+        }
     }
 }
