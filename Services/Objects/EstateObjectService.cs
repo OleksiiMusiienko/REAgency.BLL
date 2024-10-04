@@ -211,7 +211,7 @@ namespace REAgency.BLL.Services.Objects
                 pathPhoto = estateObjectDTO.pathPhoto,
                 estateType = estateObjectDTO.estateType
             };
-            Database.EstateObjects.UpdatePathFoto(estateObject);
+            //Database.EstateObjects.UpdatePathFoto(estateObject);
             await Database.Save();
         }
     }
