@@ -42,7 +42,6 @@ namespace REAgency.BLL.Services.Locations
                 RegionId = locationDTO.RegionId,
                 DistrictId = locationDTO.DistrictId,
                 LocalityId = locationDTO.LocalityId,
-                DistrictId = locationDTO.DistrictId,
                 Date = locationDTO.Date
             };
             await Database.Locations.Create(location);
