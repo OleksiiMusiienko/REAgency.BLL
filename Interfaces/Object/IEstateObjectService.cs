@@ -20,6 +20,8 @@ namespace REAgency.BLL.Interfaces.Object
         Task<IEnumerable<EstateObjectDTO>> GetEstateObjectByOperationAndLocalityId(int operationId,int localityId);
         Task<IEnumerable<EstateObjectDTO>> GetFilteredEstateObjects(int? typeId, int? operationTypeId, int? localityId, int? minPrice,
             int? maxPrice, double? minArea, double? maxArea);
+        Task<IEnumerable<EstateObjectDTO>> GetFilteredEstateObjectsForAdmin(int? typeId, int? operationTypeId, int? localityId, int? minPrice,
+         int? maxPrice, double? minArea, double? maxArea, int?employeeId);
         Task<EstateObjectDTO> GetByDateTime(DateTime date);
         Task CreateEstateObject(EstateObjectDTO estateObjectsDTO);
         Task UpdateEstateObject(EstateObjectDTO estateObjectsDTO);

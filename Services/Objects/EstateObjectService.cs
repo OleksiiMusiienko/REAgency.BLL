@@ -98,6 +98,13 @@ namespace REAgency.BLL.Services.Objects
             return mapper.Map<IEnumerable<EstateObject>, IEnumerable<EstateObjectDTO>>(await Database.EstateObjects.GetAllByFiltered(typeId, operationTypeId, localityId,
                 minPrice, maxPrice, minArea,maxArea));
         }
+        public async Task<IEnumerable<EstateObjectDTO>> GetFilteredEstateObjectsForAdmin(int? typeId, int? operationTypeId, int? localityId, int? minPrice,
+          int? maxPrice, double? minArea, double? maxArea, int? employeeId)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<EstateObject, EstateObjectDTO>()).CreateMapper();
+            return mapper.Map<IEnumerable<EstateObject>, IEnumerable<EstateObjectDTO>>(await Database.EstateObjects.GetAllByFilteredForAdmin(typeId, operationTypeId, localityId,
+                minPrice, maxPrice, minArea, maxArea, employeeId));
+        }
 
         public async Task<EstateObjectDTO> GetByDateTime(DateTime date)
         {
