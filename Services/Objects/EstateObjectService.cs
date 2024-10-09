@@ -216,9 +216,10 @@ namespace REAgency.BLL.Services.Objects
                 Status = estateObjectDTO.Status,
                 Date = estateObjectDTO.Date,
                 pathPhoto = estateObjectDTO.pathPhoto,
-                estateType = estateObjectDTO.estateType
+                estateType = estateObjectDTO.estateType,
+                numberStreet = (int)estateObjectDTO.numberStreet
             };
-            //Database.EstateObjects.UpdatePathFoto(estateObject);
+            Database.EstateObjects.UpdatePathFoto(estateObject);
             await Database.Save();
         }
     }
