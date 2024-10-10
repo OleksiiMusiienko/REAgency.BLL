@@ -25,5 +25,6 @@ namespace REAgency.BLL.DTO.Object
         [Display(Name = "Житлова площа")]
         [Range(5, double.MaxValue)]
         public double livingArea { get; set; }
+        public int estateObjectId { get; set; }
     }
 }

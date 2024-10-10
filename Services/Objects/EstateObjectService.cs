@@ -134,15 +134,20 @@ namespace REAgency.BLL.Services.Objects
         }
         public async Task CreateEstateObject(EstateObjectDTO estateObjectDTO)
         {
+            if(estateObjectDTO.numberStreet==null)
+            {
+                estateObjectDTO.numberStreet = 0;
+            }
             var estateObject = new EstateObject
             {
-                Id = estateObjectDTO.Id,                
+                Id = estateObjectDTO.Id,
                 clientId = estateObjectDTO.clientId,
                 countViews = estateObjectDTO.countViews,
                 employeeId = estateObjectDTO.employeeId,
                 operationId = estateObjectDTO.operationId,
                 locationId = estateObjectDTO.locationId,
-                Street = estateObjectDTO.Street,              
+                Street = estateObjectDTO.Street,
+                numberStreet = (int)estateObjectDTO.numberStreet,
                 Price = estateObjectDTO.Price,
                 currencyId = estateObjectDTO.currencyId,
                 Area = estateObjectDTO.Area,
