@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace REAgency.BLL.DTO.Object
 {
-    public class RoomDTO
+    public class RoomDTO: EstateObjectDTO
     {
         public int Id { get; set; }
 
@@ -25,5 +25,6 @@ namespace REAgency.BLL.DTO.Object
         [Display(Name = "Житлова площа")]
         [Range(5, double.MaxValue)]
         public double livingArea { get; set; }
+        public int estateObjectId { get; set; }
     }
 }

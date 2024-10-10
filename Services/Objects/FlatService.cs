@@ -1,22 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
-using Azure;
-using REAgency.BLL.DTO;
+﻿using AutoMapper;
 using REAgency.BLL.DTO.Object;
-using REAgency.BLL.DTO.Persons;
 using REAgency.BLL.Interfaces.Object;
-using REAgency.DAL.Entities;
-using REAgency.DAL.Entities.Locations;
 using REAgency.DAL.Entities.Object;
-using REAgency.DAL.Entities.Person;
 using REAgency.DAL.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace REAgency.BLL.Services.Objects
 {
@@ -34,8 +21,7 @@ namespace REAgency.BLL.Services.Objects
             //var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Flat, FlatDTO>()).CreateMapper();
             //return mapper.Map<IEnumerable<Flat>, IEnumerable<FlatDTO>>(await Database.Flats.GetAll());
 
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Flat, FlatDTO>()
-                .ForMember("Price", opt => opt.MapFrom(c => c.estateObject.Price))
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Flat, FlatDTO>()                
                 .ForMember("countViews", opt => opt.MapFrom(c => c.estateObject.countViews))
                 .ForMember("clientId", opt => opt.MapFrom(c => c.estateObject.clientId))
                 .ForMember("employeeId", opt => opt.MapFrom(c => c.estateObject.employeeId))
@@ -43,6 +29,7 @@ namespace REAgency.BLL.Services.Objects
                 .ForMember("locationId", opt => opt.MapFrom(c => c.estateObject.locationId))
                 .ForMember("Street", opt => opt.MapFrom(c => c.estateObject.Street))
                 .ForMember("numberStreet", opt => opt.MapFrom(c => c.estateObject.numberStreet))
+                .ForMember("Price", opt => opt.MapFrom(c => c.estateObject.Price))
                 .ForMember("currencyId", opt => opt.MapFrom(c => c.estateObject.currencyId))
                 .ForMember("Area", opt => opt.MapFrom(c => c.estateObject.Area))
                 .ForMember("unitAreaId", opt => opt.MapFrom(c => c.estateObject.unitAreaId))
@@ -50,7 +37,7 @@ namespace REAgency.BLL.Services.Objects
                 .ForMember("Status", opt => opt.MapFrom(c => c.estateObject.Status))
                 .ForMember("Date", opt => opt.MapFrom(c => c.estateObject.Date))
                 .ForMember("pathPhoto", opt => opt.MapFrom(c => c.estateObject.pathPhoto))
-
+                .ForMember("estateType", opt=>opt.MapFrom(c=>c.estateObject.estateType))
                 ); 
             var mapper = new Mapper(config); 
             return mapper.Map<IEnumerable<Flat>, IEnumerable<FlatDTO>>(await Database.Flats.GetAll());
@@ -93,9 +80,7 @@ namespace REAgency.BLL.Services.Objects
                 Status = flat.estateObject.Status,
                 Date = flat.estateObject.Date,
                 pathPhoto = flat.estateObject.pathPhoto,
-                estateType = flat.estateObject.estateType,
-               
-
+                estateType = flat.estateObject.estateType, 
             };
         }
      
