@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace REAgency.BLL.DTO.Object
 {
-    public class RoomDTO
+    public class RoomDTO: EstateObjectDTO
     {
         public int Id { get; set; }
 

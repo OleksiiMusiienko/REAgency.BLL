@@ -10,7 +10,7 @@ namespace REAgency.BLL.Interfaces.Object
     public interface IRoomService
     {
         Task<IEnumerable<RoomDTO>> GetAllRooms();
-
+        Task<RoomDTO> GetRoomByEstateObjectId(int id);
         Task<RoomDTO> GetRoomById(int id);
         Task CreateRoom(RoomDTO officeDTO);
         Task UpdateRoom(RoomDTO officeDTO);
