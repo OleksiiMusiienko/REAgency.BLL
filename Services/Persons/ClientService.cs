@@ -176,6 +176,12 @@ namespace REAgency.BLL.Services.Persons
             Database.Clients.Update(client);
             await Database.Save();
         }
+
+        public async Task UpdateClientNameAndPhone(int id, string name, string phone)
+        {
+            Database.Clients.UpdateNameAndPhone(id, name, phone);
+            await Database.Save();
+        }
         public async Task UpdateClientPassword(ClientDTO clientDTO)
         {
             byte[] saltbuf = new byte[16];

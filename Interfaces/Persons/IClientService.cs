@@ -21,6 +21,8 @@ namespace REAgency.BLL.Interfaces.Persons
         Task CreateClient(ClientDTO clientDTO);
         Task UpdateClient(ClientDTO clientDTO);
         Task UpdateClientPassword(ClientDTO clientDTO);
+
+        Task UpdateClientNameAndPhone(int id, string name, string phone);
         Task DeleteClient(int id);
     }
 }
