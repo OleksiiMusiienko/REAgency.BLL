@@ -12,6 +12,7 @@ namespace REAgency.BLL.Interfaces.Object
         Task<IEnumerable<HouseDTO>> GetAllHouses();
 
         Task<HouseDTO> GetHouseById(int id);
+        Task<HouseDTO> GetHouseByEstateObjectId(int id);
 
         Task CreateHouse(HouseDTO officeDTO);
         Task UpdateHouse(HouseDTO officeDTO);
