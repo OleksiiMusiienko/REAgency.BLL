@@ -69,6 +69,7 @@ namespace REAgency.BLL.Services.Objects
             var stead = new Stead
             {
                 Id = steadDTO.Id,
+                estateObjectId = steadDTO.estateObjectId,
                 Cadastr = steadDTO.Cadastr,
                 Use = steadDTO.Use
             };
