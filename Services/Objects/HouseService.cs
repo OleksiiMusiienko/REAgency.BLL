@@ -87,6 +87,7 @@ namespace REAgency.BLL.Services.Objects
                 Rooms = house.Rooms,
                 kitchenArea = house.kitchenArea,
                 livingArea = house.livingArea,
+                steadArea = house.steadArea,
                 countViews = house.estateObject.countViews,
                 clientId = house.estateObject.clientId,
                 clientPhone = house.estateObject.Client.Phone1,
@@ -124,6 +125,7 @@ namespace REAgency.BLL.Services.Objects
             var house = new House
             {
                 Id = houseDTO.Id,
+                estateObjectId = houseDTO.estateObjectId,
                 Floors = houseDTO.Floors,
                 Rooms = houseDTO.Rooms,
                 steadArea = houseDTO.steadArea,
@@ -138,7 +140,8 @@ namespace REAgency.BLL.Services.Objects
         {
             var house = new House
             {
-                 Id = houseDTO.Id,
+                Id = houseDTO.Id,
+                estateObjectId = houseDTO.estateObjectId,
                 Floors = houseDTO.Floors,
                 Rooms = houseDTO.Rooms,
                 steadArea = houseDTO.steadArea,
