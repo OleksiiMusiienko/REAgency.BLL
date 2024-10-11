@@ -4,6 +4,7 @@ using REAgency.BLL.Interfaces.Object;
 using REAgency.DAL.Entities.Object;
 using REAgency.DAL.Interfaces;
 using System.ComponentModel.DataAnnotations;
+
 namespace REAgency.BLL.Services.Objects
 {
     public class RoomService: IRoomService

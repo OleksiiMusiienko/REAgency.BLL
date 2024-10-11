@@ -54,7 +54,6 @@ namespace REAgency.BLL.Services.Objects
 
 
         }
-
         public async Task<HouseDTO> GetHouseById(int id)
         {
             var house = await Database.Houses.Get(id);
@@ -72,8 +71,6 @@ namespace REAgency.BLL.Services.Objects
 
             };
         }
-
-
         public async Task CreateHouse(HouseDTO houseDTO)
         {
             var house = new House
@@ -88,7 +85,6 @@ namespace REAgency.BLL.Services.Objects
             await Database.Houses.Create(house);
             await Database.Save();
         }
-
         public async Task UpdateHouse(HouseDTO houseDTO)
         {
             var house = new House
@@ -102,8 +98,7 @@ namespace REAgency.BLL.Services.Objects
             };
             Database.Houses.Update(house);
             await Database.Save();
-        }
-       
+        }       
         public async Task DeleteHouse(int id)
         {
             await Database.Houses.Delete(id);
