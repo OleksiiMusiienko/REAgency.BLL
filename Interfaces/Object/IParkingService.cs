@@ -10,9 +10,7 @@ namespace REAgency.BLL.Interfaces.Object
     public interface IParkingService
     {
         Task<IEnumerable<ParkingDTO>> GetParkings();
-
         Task<ParkingDTO> GetParkingById(int id);
-
         Task CreateParking(ParkingDTO parkingDTO);
         Task UpdateParking(ParkingDTO parkingDTO);
         Task DeleteParking(int id);

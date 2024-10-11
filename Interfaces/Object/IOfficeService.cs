@@ -10,11 +10,9 @@ namespace REAgency.BLL.Interfaces.Object
     public interface IOfficeService
     {
         Task<IEnumerable<OfficeDTO>> GetOffices();
-
         Task<OfficeDTO> GetOfficeById(int id);
-
         Task CreateOffice(OfficeDTO officeDTO);
-        //Task UpdateOffice(OfficeDTO officeDTO);
+        Task Update(OfficeDTO officeDTO);
         Task DeleteOffice(int id);
     }
 }

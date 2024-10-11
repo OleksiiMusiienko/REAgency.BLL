@@ -13,8 +13,8 @@ namespace REAgency.BLL.Interfaces.Object
 
         Task<PremisDTO> GetPremisById(int id);
 
-        Task CreatePremis(PremisDTO premisDTO);
-        Task UpdatePremis(PremisDTO premisDTO);
-        Task DeletePremis(int id);
+        Task Create(PremisDTO premisDTO);
+        Task Update(PremisDTO premisDTO);
+        Task Delete(int id);
     }
 }
