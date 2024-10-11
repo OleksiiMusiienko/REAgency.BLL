@@ -1,15 +1,9 @@
-﻿using REAgency.BLL.DTO.Object;
+﻿using AutoMapper;
+using REAgency.BLL.DTO.Object;
 using REAgency.BLL.Interfaces.Object;
-using REAgency.DAL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
-
 using REAgency.DAL.Entities.Object;
+using REAgency.DAL.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace REAgency.BLL.Services.Objects
 {
@@ -44,12 +38,7 @@ namespace REAgency.BLL.Services.Objects
                 );
             var mapper = new Mapper(config);
             return mapper.Map<IEnumerable<Office>, IEnumerable<OfficeDTO>>(await Database.Offices.GetAll());
-
-
-
-
         }
-
         public async Task<OfficeDTO> GetOfficeById(int id)
         {
             var office = await Database.Offices.Get(id);
@@ -57,45 +46,36 @@ namespace REAgency.BLL.Services.Objects
                 throw new ValidationException("Wrong office!");
             return new OfficeDTO
             {
-                Id = office.Id
+                Id = office.Id,
+                estateObjectId = office.estateObjectId
              
             };
         }
-
-
         public async Task CreateOffice(OfficeDTO officeDTO)
         {
             var office = new Office
             {
-                Id = officeDTO.Id
-
+                Id = officeDTO.Id,
+                estateObjectId =officeDTO.estateObjectId,
             };
             await Database.Offices.Create(office);
             await Database.Save();
         }
-
-        //public async Task Update(FlatDTO flatDTO)
-        //{
-        //    var flat = new Flat
-        //    {
-        //        Id = flatDTO.Id,
-        //        Floor = flatDTO.Floor,
-        //        Floors = flatDTO.Floors,
-        //        Rooms = flatDTO.Rooms,
-        //        kitchenArea = flatDTO.kitchenArea,
-        //        livingArea = flatDTO.livingArea
-        //    };
-        //    Database.Flats.Update(flat);
-        //    await Database.Save();
-        //}
-
-        
+        public async Task Update(OfficeDTO officeDTO)
+        {
+            var office = new Office
+            {
+                Id = officeDTO.Id,
+               estateObjectId = officeDTO.estateObjectId
+            };
+            Database.Offices.Update(office);
+            await Database.Save();
+        }
         public async Task DeleteOffice(int id)
         {
             await Database.Offices.Delete(id);
             await Database.Save();
         }
-
         
     }
 }

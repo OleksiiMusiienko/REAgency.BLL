@@ -10,10 +10,7 @@ namespace REAgency.BLL.Interfaces.Object
     public interface IGarageService
     {
         Task<IEnumerable<GarageDTO>> GetGarages();
-
-        Task<GarageDTO> GetGarageById(int id);
-
-       
+        Task<GarageDTO> GetGarageById(int id);      
 
         Task CreateGarage(GarageDTO garageDTO);
         Task UpdateGarage(GarageDTO garageDTO);

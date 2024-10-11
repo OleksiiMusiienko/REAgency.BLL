@@ -1,31 +1,23 @@
-﻿using REAgency.BLL.DTO.Object;
-using REAgency.BLL.Interfaces.Object;
-using REAgency.DAL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using REAgency.BLL.DTO.Object;
 using REAgency.BLL.Interfaces.Object;
 using REAgency.DAL.Entities.Object;
 using REAgency.DAL.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace REAgency.BLL.Services.Objects
 {
-    public class GarageService : IGarageService
+    public class PremisService: IPremisService
     {
         IUnitOfWork Database { get; set; }
 
-        public GarageService(IUnitOfWork uow)
+        public PremisService(IUnitOfWork uow)
         {
             Database = uow;
         }
-        public async Task<IEnumerable<GarageDTO>> GetGarages()
+        public async Task<IEnumerable<PremisDTO>> GetPremises()
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Garage, GarageDTO>()
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Office, OfficeDTO>()
                 .ForMember("Price", opt => opt.MapFrom(c => c.estateObject.Price))
                 .ForMember("countViews", opt => opt.MapFrom(c => c.estateObject.countViews))
                 .ForMember("clientId", opt => opt.MapFrom(c => c.estateObject.clientId))
@@ -44,50 +36,45 @@ namespace REAgency.BLL.Services.Objects
 
                 );
             var mapper = new Mapper(config);
-            return mapper.Map<IEnumerable<Garage>, IEnumerable<GarageDTO>>(await Database.Garages.GetAll());
-
-
-
-
+            return mapper.Map<IEnumerable<Premis>, IEnumerable<PremisDTO>>(await Database.Premises.GetAll());
         }
-        public async Task<GarageDTO> GetGarageById(int id)
+        public async Task<PremisDTO> GetPremisById(int id)
         {
-            var garage = await Database.Garages.Get(id);
-            if (garage == null)
+            var prem = await Database.Premises.Get(id);
+            if (prem == null)
                 throw new ValidationException("Wrong office!");
-            return new GarageDTO
+            return new PremisDTO
             {
-                Id = garage.Id,
-                Floors = garage.Floors,
-                estateObjectId = garage.estateObjectId
+                Id = prem.Id,
+                estateObjectId = (int)prem.estateObjectId
             };
         }
-        public async Task CreateGarage(GarageDTO garageDTO)
+        public async Task Create(PremisDTO officeDTO)
         {
-            var garage = new Garage
+            var prem = new Premis
             {
-                Id = garageDTO.Id,
-                Floors = garageDTO.Floors,
-                estateObjectId = garageDTO.estateObjectId
+                Id = officeDTO.Id,
+                estateObjectId = officeDTO.estateObjectId,
             };
-            await Database.Garages.Create(garage);
+            await Database.Premises.Create(prem);
             await Database.Save();
         }
-        public async Task UpdateGarage(GarageDTO garageDTO)
+        public async Task Update(PremisDTO officeDTO)
         {
-            var garage = new Garage
+            var prem = new Premis
             {
-                Id = garageDTO.Id,
-                Floors = garageDTO.Floors,
-                estateObjectId= garageDTO.estateObjectId
+                Id = officeDTO.Id,
+                estateObjectId = officeDTO.estateObjectId
             };
-            Database.Garages.Update(garage);
+            Database.Premises.Update(prem);
             await Database.Save();
         }
-        public async Task DeleteGarage(int id)
+        public async Task Delete(int id)
         {
-            await Database.Garages.Delete(id);
+            await Database.Offices.Delete(id);
             await Database.Save();
         }
+
     }
 }
+

@@ -1,31 +1,23 @@
-﻿using REAgency.BLL.DTO.Object;
-using REAgency.BLL.Interfaces.Object;
-using REAgency.DAL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using REAgency.BLL.DTO.Object;
 using REAgency.BLL.Interfaces.Object;
 using REAgency.DAL.Entities.Object;
 using REAgency.DAL.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace REAgency.BLL.Services.Objects
 {
-    public class GarageService : IGarageService
+    public class StorageService: IStorageService
     {
         IUnitOfWork Database { get; set; }
 
-        public GarageService(IUnitOfWork uow)
+        public StorageService(IUnitOfWork uow) 
         {
             Database = uow;
         }
-        public async Task<IEnumerable<GarageDTO>> GetGarages()
+        public async Task<IEnumerable<StorageDTO>> GetStorages()
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Garage, GarageDTO>()
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Storage, StorageDTO>()
                 .ForMember("Price", opt => opt.MapFrom(c => c.estateObject.Price))
                 .ForMember("countViews", opt => opt.MapFrom(c => c.estateObject.countViews))
                 .ForMember("clientId", opt => opt.MapFrom(c => c.estateObject.clientId))
@@ -44,49 +36,42 @@ namespace REAgency.BLL.Services.Objects
 
                 );
             var mapper = new Mapper(config);
-            return mapper.Map<IEnumerable<Garage>, IEnumerable<GarageDTO>>(await Database.Garages.GetAll());
-
-
-
-
+            return mapper.Map<IEnumerable<Storage>, IEnumerable<StorageDTO>>(await Database.Storeges.GetAll());
         }
-        public async Task<GarageDTO> GetGarageById(int id)
+        public async Task<StorageDTO> GetStorageById(int id)
         {
-            var garage = await Database.Garages.Get(id);
-            if (garage == null)
+            var storage = await Database.Storeges.Get(id);
+            if (storage == null)
                 throw new ValidationException("Wrong office!");
-            return new GarageDTO
+            return new StorageDTO
             {
-                Id = garage.Id,
-                Floors = garage.Floors,
-                estateObjectId = garage.estateObjectId
+                Id = storage.Id,
+                estateObjectId = storage.estateObjectId
             };
         }
-        public async Task CreateGarage(GarageDTO garageDTO)
+        public async Task CreateStorage(StorageDTO storageDTO)
         {
-            var garage = new Garage
+            var stor = new Storage
             {
-                Id = garageDTO.Id,
-                Floors = garageDTO.Floors,
-                estateObjectId = garageDTO.estateObjectId
+                Id = storageDTO.Id,
+                estateObjectId = storageDTO.estateObjectId
             };
-            await Database.Garages.Create(garage);
+            await Database.Storeges.Create(stor);
             await Database.Save();
         }
-        public async Task UpdateGarage(GarageDTO garageDTO)
+        public async Task UpdateStorage(StorageDTO storageDTO)
         {
-            var garage = new Garage
+            var stor = new Storage
             {
-                Id = garageDTO.Id,
-                Floors = garageDTO.Floors,
-                estateObjectId= garageDTO.estateObjectId
+                Id = storageDTO.Id,
+                estateObjectId = storageDTO.estateObjectId
             };
-            Database.Garages.Update(garage);
+            Database.Storeges.Update(stor);
             await Database.Save();
         }
-        public async Task DeleteGarage(int id)
+        public async Task DeleteStorage(int id)
         {
-            await Database.Garages.Delete(id);
+            await Database.Storeges.Delete(id);
             await Database.Save();
         }
     }

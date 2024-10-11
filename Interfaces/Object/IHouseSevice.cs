@@ -10,7 +10,6 @@ namespace REAgency.BLL.Interfaces.Object
     public interface IHouseSevice
     {
         Task<IEnumerable<HouseDTO>> GetAllHouses();
-
         Task<HouseDTO> GetHouseById(int id);
         Task<HouseDTO> GetHouseByEstateObjectId(int id);
 

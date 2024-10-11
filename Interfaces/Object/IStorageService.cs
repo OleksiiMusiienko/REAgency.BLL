@@ -10,7 +10,6 @@ namespace REAgency.BLL.Interfaces.Object
     public interface IStorageService
     {
         Task<IEnumerable<StorageDTO>> GetStorages();
-
         Task<StorageDTO> GetStorageById(int id);
         Task CreateStorage(StorageDTO storageDTO);
         Task UpdateStorage(StorageDTO storageDTO);

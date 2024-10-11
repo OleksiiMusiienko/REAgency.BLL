@@ -10,7 +10,6 @@ namespace REAgency.BLL.Interfaces.Object
     public interface ISteadService
     {
         Task<IEnumerable<SteadDTO>> GetSteads();
-
         Task<SteadDTO> GetSteadById(int id);
         Task CreateStead(SteadDTO steadDTO);
         Task UpdateStead(SteadDTO steadDTO);

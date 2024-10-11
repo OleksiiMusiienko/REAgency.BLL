@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using REAgency.DAL.Entities.Object;
+using REAgencyEnum;
 
 namespace REAgency.BLL.DTO.Object
 {
@@ -15,6 +15,7 @@ namespace REAgency.BLL.DTO.Object
         public string Cadastr { get; set; }
         [Required(ErrorMessage = "Поле \"Землекористування\" обов'язкове!")]
         public LandUse Use { get; set; }
+        public int estateObjectId { get; set; }
     }
     
 }
