@@ -71,6 +71,53 @@ namespace REAgency.BLL.Services.Objects
 
             };
         }
+
+        public async Task<HouseDTO> GetHouseByEstateObjectId(int id)
+        {
+            var house = await Database.Houses.GetByEstateObjectId(id);
+            if (house == null)
+                throw new ValidationException("Wrong house!");
+
+            return new HouseDTO
+            {
+                Id = house.Id,
+                
+                Floors = house.Floors,
+                Rooms = house.Rooms,
+                kitchenArea = house.kitchenArea,
+                livingArea = house.livingArea,
+                countViews = house.estateObject.countViews,
+                clientId = house.estateObject.clientId,
+                clientPhone = house.estateObject.Client.Phone1,
+                clientName = house.estateObject.Client.Name,
+                employeeId = house.estateObject.employeeId,
+                //employeeName = estateObject.Employee.Name,
+                //employeePhone = estateObject.Employee.Phone1,
+                operationId = house.estateObject.operationId,
+                //operationName = estateObject.Operation.Name,
+                locationId = house.estateObject.locationId,
+
+                RegionId = (int)house.estateObject.Location.RegionId,
+                LocalityId = (int)house.estateObject.Location.LocalityId,
+                DistrictId = (int)house.estateObject.Location.DistrictId,
+                Street = house.estateObject.Street,
+                numberStreet = house.estateObject.numberStreet,
+                Price = house.estateObject.Price,
+                currencyId = house.estateObject.currencyId,
+                //currencyName = estateObject.Currency.Name,
+                Area = house.estateObject.Area,
+                unitAreaId = house.estateObject.unitAreaId,
+                //areaName = estateObject.unitArea.Name,
+                Description = house.estateObject.Description,
+                Status = house.estateObject.Status,
+                Date = house.estateObject.Date,
+                pathPhoto = house.estateObject.pathPhoto,
+                estateType = house.estateObject.estateType,
+                estateObjectId = (int)house.estateObjectId
+            };
+
+        }
+
         public async Task CreateHouse(HouseDTO houseDTO)
         {
             var house = new House
