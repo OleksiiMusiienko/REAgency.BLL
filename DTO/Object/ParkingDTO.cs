@@ -9,5 +9,6 @@ namespace REAgency.BLL.DTO.Object
     public class ParkingDTO : EstateObjectDTO
     {
         public int Id { get; set; }
+        public int estateObjectId { get; set; }
     }
 }

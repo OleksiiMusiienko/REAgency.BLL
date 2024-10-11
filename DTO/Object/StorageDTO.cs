@@ -9,5 +9,6 @@ namespace REAgency.BLL.DTO.Object
     public class StorageDTO : EstateObjectDTO
     {
         public int Id { get; set; }
+        public int estateObjectId { get; set; }
     }
 }
