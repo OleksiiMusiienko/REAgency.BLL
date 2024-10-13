@@ -80,8 +80,7 @@ namespace REAgency.BLL.Services.Objects
         {
             var room = await Database.Rooms.GetByEstateObjectId(id);
             if (room == null)
-                throw new ValidationException("Wrong flat!");
-
+                throw new ValidationException("Wrong room!");
             return new RoomDTO
             {
                 Id = room.Id,
