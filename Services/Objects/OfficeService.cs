@@ -51,6 +51,39 @@ namespace REAgency.BLL.Services.Objects
              
             };
         }
+        public async Task<OfficeDTO> GetOfficeByEstateObjectId(int id)
+        {
+            var office = await Database.Offices.GetByEstateObjectId(id);
+            if (office == null)
+                throw new ValidationException("Wrong office!");
+            return new OfficeDTO
+            {
+                Id = office.Id,
+                estateObjectId = office.estateObjectId,
+                countViews = office.estateObject.countViews,
+                clientId = office.estateObject.clientId,
+                clientPhone = office.estateObject.Client.Phone1,
+                clientName = office.estateObject.Client.Name,
+                employeeId = office.estateObject.employeeId,
+                operationId = office.estateObject.operationId,
+                locationId = office.estateObject.locationId,
+                RegionId = (int)office.estateObject.Location.RegionId,
+                LocalityId = (int)office.estateObject.Location.LocalityId,
+                DistrictId = (int)office.estateObject.Location.DistrictId,
+                Street = office.estateObject.Street,
+                numberStreet = office.estateObject.numberStreet,
+                Price = office.estateObject.Price,
+                currencyId = office.estateObject.currencyId,
+                Area = office.estateObject.Area,
+                unitAreaId = office.estateObject.unitAreaId,
+                Description = office.estateObject.Description,
+                Status = office.estateObject.Status,
+                Date = office.estateObject.Date,
+                pathPhoto = office.estateObject.pathPhoto,
+                estateType = office.estateObject.estateType,
+
+            };
+        }
         public async Task CreateOffice(OfficeDTO officeDTO)
         {
             var office = new Office

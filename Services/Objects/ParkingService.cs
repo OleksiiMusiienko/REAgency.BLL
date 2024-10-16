@@ -50,6 +50,39 @@ namespace REAgency.BLL.Services.Objects
 
             };
         }
+        public async Task<ParkingDTO> GetParkingByEstateObjectId(int id)
+        {
+            var parking = await Database.Parkings.GetByEstateObjectId(id);
+            if (parking == null)
+                throw new ValidationException("Wrong office!");
+            return new ParkingDTO
+            {
+                Id = parking.Id,
+                estateObjectId = (int)parking.estateObjectId,
+                countViews = parking.estateObject.countViews,
+                clientId = parking.estateObject.clientId,
+                clientPhone = parking.estateObject.Client.Phone1,
+                clientName = parking.estateObject.Client.Name,
+                employeeId = parking.estateObject.employeeId,
+                operationId = parking.estateObject.operationId,
+                locationId = parking.estateObject.locationId,
+                RegionId = (int)parking.estateObject.Location.RegionId,
+                LocalityId = (int)parking.estateObject.Location.LocalityId,
+                DistrictId = (int)parking.estateObject.Location.DistrictId,
+                Street = parking.estateObject.Street,
+                numberStreet = parking.estateObject.numberStreet,
+                Price = parking.estateObject.Price,
+                currencyId = parking.estateObject.currencyId,
+                Area = parking.estateObject.Area,
+                unitAreaId = parking.estateObject.unitAreaId,
+                Description = parking.estateObject.Description,
+                Status = parking.estateObject.Status,
+                Date = parking.estateObject.Date,
+                pathPhoto = parking.estateObject.pathPhoto,
+                estateType = parking.estateObject.estateType,
+
+            };
+        }
         public async Task CreateParking(ParkingDTO parkingDTO)
         {
             var parking = new Parking

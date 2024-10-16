@@ -11,6 +11,7 @@ namespace REAgency.BLL.Interfaces.Object
     {
         Task<IEnumerable<StorageDTO>> GetStorages();
         Task<StorageDTO> GetStorageById(int id);
+        Task<StorageDTO> GetStorageByEstateObjectId(int id);
         Task CreateStorage(StorageDTO storageDTO);
         Task UpdateStorage(StorageDTO storageDTO);
         Task DeleteStorage(int id);

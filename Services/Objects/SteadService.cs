@@ -63,6 +63,40 @@ namespace REAgency.BLL.Services.Objects
             };
         }
 
+        public async Task<SteadDTO> GetSteadByEstateObjectId(int id)
+        {
+            var stead = await Database.Steads.GetByEstateObjectId(id);
+            if (stead == null)
+                throw new ValidationException("Wrong stead!");
+            return new SteadDTO
+            {
+                Id = stead.Id,
+                Cadastr = stead.Cadastr,
+                Use = stead.Use,
+                clientId = stead.estateObject.clientId,
+                clientPhone = stead.estateObject.Client.Phone1,
+                clientName = stead.estateObject.Client.Name,
+                employeeId = stead.estateObject.employeeId,
+                operationId = stead.estateObject.operationId,
+                locationId = stead.estateObject.locationId,
+                RegionId = (int)stead.estateObject.Location.RegionId,
+                LocalityId = (int)stead.estateObject.Location.LocalityId,
+                DistrictId = (int)stead.estateObject.Location.DistrictId,
+                Street = stead.estateObject.Street,
+                numberStreet = stead.estateObject.numberStreet,
+                Price = stead.estateObject.Price,
+                currencyId = stead.estateObject.currencyId,
+                Area = stead.estateObject.Area,
+                unitAreaId = stead.estateObject.unitAreaId,
+                Description = stead.estateObject.Description,
+                Status = stead.estateObject.Status,
+                Date = stead.estateObject.Date,
+                pathPhoto = stead.estateObject.pathPhoto,
+                estateType = stead.estateObject.estateType,
+                estateObjectId = (int)stead.estateObjectId
+
+            };
+        }
 
         public async Task CreateStead(SteadDTO steadDTO)
         {
@@ -83,7 +117,8 @@ namespace REAgency.BLL.Services.Objects
             {
                 Id = steadDTO.Id,
                 Cadastr = steadDTO.Cadastr,
-                Use = steadDTO.Use
+                Use = steadDTO.Use,
+                estateObjectId = steadDTO.estateObjectId
             };
             Database.Steads.Update(stead);
             await Database.Save();

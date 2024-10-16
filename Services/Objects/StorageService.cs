@@ -42,11 +42,43 @@ namespace REAgency.BLL.Services.Objects
         {
             var storage = await Database.Storeges.Get(id);
             if (storage == null)
-                throw new ValidationException("Wrong office!");
+                throw new ValidationException("Wrong storage!");
             return new StorageDTO
             {
                 Id = storage.Id,
                 estateObjectId = storage.estateObjectId
+            };
+        }
+        public async Task<StorageDTO> GetStorageByEstateObjectId(int id)
+        {
+            var storage = await Database.Storeges.GetByEstateObjectId(id);
+            if (storage == null)
+                throw new ValidationException("Wrong storage!");
+            return new StorageDTO
+            {
+                Id = storage.Id,
+                estateObjectId = storage.estateObjectId,
+                countViews = storage.estateObject.countViews,
+                clientId = storage.estateObject.clientId,
+                clientPhone = storage.estateObject.Client.Phone1,
+                clientName = storage.estateObject.Client.Name,
+                employeeId = storage.estateObject.employeeId,
+                operationId = storage.estateObject.operationId,
+                locationId = storage.estateObject.locationId,
+                RegionId = (int)storage.estateObject.Location.RegionId,
+                LocalityId = (int)storage.estateObject.Location.LocalityId,
+                DistrictId = (int)storage.estateObject.Location.DistrictId,
+                Street = storage.estateObject.Street,
+                numberStreet = storage.estateObject.numberStreet,
+                Price = storage.estateObject.Price,
+                currencyId = storage.estateObject.currencyId,
+                Area = storage.estateObject.Area,
+                unitAreaId = storage.estateObject.unitAreaId,
+                Description = storage.estateObject.Description,
+                Status = storage.estateObject.Status,
+                Date = storage.estateObject.Date,
+                pathPhoto = storage.estateObject.pathPhoto,
+                estateType = storage.estateObject.estateType,
             };
         }
         public async Task CreateStorage(StorageDTO storageDTO)

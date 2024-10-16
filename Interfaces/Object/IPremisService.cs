@@ -12,6 +12,7 @@ namespace REAgency.BLL.Interfaces.Object
         Task<IEnumerable<PremisDTO>> GetPremises();
 
         Task<PremisDTO> GetPremisById(int id);
+        Task<PremisDTO> GetPremisByEstateObjectId(int id);
 
         Task Create(PremisDTO premisDTO);
         Task Update(PremisDTO premisDTO);

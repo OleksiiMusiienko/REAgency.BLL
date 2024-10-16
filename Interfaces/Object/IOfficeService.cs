@@ -11,6 +11,7 @@ namespace REAgency.BLL.Interfaces.Object
     {
         Task<IEnumerable<OfficeDTO>> GetOffices();
         Task<OfficeDTO> GetOfficeById(int id);
+        Task<OfficeDTO> GetOfficeByEstateObjectId(int estateObjectId);
         Task CreateOffice(OfficeDTO officeDTO);
         Task Update(OfficeDTO officeDTO);
         Task DeleteOffice(int id);

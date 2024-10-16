@@ -49,6 +49,38 @@ namespace REAgency.BLL.Services.Objects
                 estateObjectId = (int)prem.estateObjectId
             };
         }
+        public async Task<PremisDTO> GetPremisByEstateObjectId(int id)
+        {
+            var prem = await Database.Premises.GetByEstateObjectId(id);
+            if (prem == null)
+                throw new ValidationException("Wrong office!");
+            return new PremisDTO
+            {
+                Id = prem.Id,
+                estateObjectId = prem.estateObjectId,
+                countViews = prem.estateObject.countViews,
+                clientId = prem.estateObject.clientId,
+                clientPhone = prem.estateObject.Client.Phone1,
+                clientName = prem.estateObject.Client.Name,
+                employeeId = prem.estateObject.employeeId,
+                operationId = prem.estateObject.operationId,
+                locationId = prem.estateObject.locationId,
+                RegionId = (int)prem.estateObject.Location.RegionId,
+                LocalityId = (int)prem.estateObject.Location.LocalityId,
+                DistrictId = (int)prem.estateObject.Location.DistrictId,
+                Street = prem.estateObject.Street,
+                numberStreet = prem.estateObject.numberStreet,
+                Price = prem.estateObject.Price,
+                currencyId = prem.estateObject.currencyId,
+                Area = prem.estateObject.Area,
+                unitAreaId = prem.estateObject.unitAreaId,
+                Description = prem.estateObject.Description,
+                Status = prem.estateObject.Status,
+                Date = prem.estateObject.Date,
+                pathPhoto = prem.estateObject.pathPhoto,
+                estateType = prem.estateObject.estateType,
+            };
+        }
         public async Task Create(PremisDTO officeDTO)
         {
             var prem = new Premis

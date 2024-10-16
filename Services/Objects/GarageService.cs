@@ -62,6 +62,39 @@ namespace REAgency.BLL.Services.Objects
                 estateObjectId = garage.estateObjectId
             };
         }
+        public async Task<GarageDTO> GetGarageByEstateObjectId(int id)
+        {
+            var garage = await Database.Garages.GetByEstateObjectId(id);
+            if (garage == null)
+                throw new ValidationException("Wrong office!");
+            return new GarageDTO
+            {
+                Id = garage.Id,
+                Floors = garage.Floors,
+                estateObjectId = garage.estateObjectId,
+                countViews = garage.estateObject.countViews,
+                clientId = garage.estateObject.clientId,
+                clientPhone = garage.estateObject.Client.Phone1,
+                clientName = garage.estateObject.Client.Name,
+                employeeId = garage.estateObject.employeeId,
+                operationId = garage.estateObject.operationId,
+                locationId = garage.estateObject.locationId,
+                RegionId = (int)garage.estateObject.Location.RegionId,
+                LocalityId = (int)garage.estateObject.Location.LocalityId,
+                DistrictId = (int)garage.estateObject.Location.DistrictId,
+                Street = garage.estateObject.Street,
+                numberStreet = garage.estateObject.numberStreet,
+                Price = garage.estateObject.Price,
+                currencyId = garage.estateObject.currencyId,
+                Area = garage.estateObject.Area,
+                unitAreaId = garage.estateObject.unitAreaId,
+                Description = garage.estateObject.Description,
+                Status = garage.estateObject.Status,
+                Date = garage.estateObject.Date,
+                pathPhoto = garage.estateObject.pathPhoto,
+                estateType = garage.estateObject.estateType,
+            };
+        }
         public async Task CreateGarage(GarageDTO garageDTO)
         {
             var garage = new Garage
