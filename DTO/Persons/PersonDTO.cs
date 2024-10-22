@@ -24,5 +24,8 @@ namespace REAgency.BLL.DTO.Persons
         public string? Email { get; set; }
 
         public bool userStatus { get; set; }
+
+        [Display(Name = "Дата народження")]
+        public DateOnly? DateOfBirth { get; set; }
     }
 }
