@@ -46,7 +46,8 @@ namespace REAgency.BLL.Services.Persons
                 Post = employee.Post?.Name,
                 Password = employee.Password,
                 Salt = employee.Salt,
-                Description = employee.Description
+                Description = employee.Description,
+                DateOfBirth = employee.DateOfBirth,
             };
         }
 
@@ -127,18 +128,8 @@ namespace REAgency.BLL.Services.Persons
         }
         public async Task UpdateEmployee(EmployeeDTO еmployeeDTO)
         {
-            byte[] saltbuf = new byte[16];
-            RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
-            randomNumberGenerator.GetBytes(saltbuf);
-            StringBuilder sb = new StringBuilder(16);
-            for (int i = 0; i < 16; i++)
-                sb.Append(string.Format("{0:X2}", saltbuf[i]));
-            string salt = sb.ToString();
-            byte[] password = Encoding.Unicode.GetBytes(salt + еmployeeDTO.Password);
-            byte[] byteHash = SHA256.HashData(password);
-            StringBuilder hash = new StringBuilder(byteHash.Length);
-            for (int i = 0; i < byteHash.Length; i++)
-                hash.Append(string.Format("{0:X2}", byteHash[i]));
+           
+          
             var еmployee = new Employee
             {
                 Id = еmployeeDTO.Id,
@@ -146,16 +137,20 @@ namespace REAgency.BLL.Services.Persons
                 Phone1 = еmployeeDTO.Phone1,
                 Email = еmployeeDTO.Email,
                 userStatus = еmployeeDTO.userStatus,
-                Avatar = еmployeeDTO.Avatar,
+              
                 Phone2 = еmployeeDTO.Phone2,
                 dateReg = еmployeeDTO.dateReg,                   //??????????? заполнение даты регистрации 
                 adminStatus = еmployeeDTO.adminStatus,
                 postId = еmployeeDTO.postId,
                 Description = еmployeeDTO.Description,
-                Password = hash.ToString(),
-                Salt = salt
+                
             };
             Database.Employees.Update(еmployee);
+            await Database.Save();
+        }
+        public async Task UpdateEmployeeAvatar(byte[] avatar, int id)
+        {
+            Database.Employees.UpdateAvatar(avatar, id);
             await Database.Save();
         }
         public async Task UpdateEmployeePassword(EmployeeDTO еmployeeDTO)

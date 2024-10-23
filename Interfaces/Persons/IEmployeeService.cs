@@ -19,6 +19,7 @@ namespace REAgency.BLL.Interfaces.Persons
         Task CreateEmployee(EmployeeDTO еmployeeDTO);
         Task UpdateEmployeePassword(EmployeeDTO employeeDTO);
         Task UpdateEmployee(EmployeeDTO еmployeeDTO);
+        Task UpdateEmployeeAvatar(byte[] data, int id);
         Task DeleteEmployee(int id);
     }
 }
