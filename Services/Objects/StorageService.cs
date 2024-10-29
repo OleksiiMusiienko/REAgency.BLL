@@ -4,6 +4,7 @@ using REAgency.BLL.Interfaces.Object;
 using REAgency.DAL.Entities.Object;
 using REAgency.DAL.Interfaces;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 
 namespace REAgency.BLL.Services.Objects
 {
@@ -63,13 +64,20 @@ namespace REAgency.BLL.Services.Objects
                 clientPhone = storage.estateObject.Client.Phone1,
                 clientName = storage.estateObject.Client.Name,
                 employeeId = storage.estateObject.employeeId,
+                employeeName = storage.estateObject.Employee.Name,
+                employeePhone = storage.estateObject.Employee.Phone1,
                 operationId = storage.estateObject.operationId,
+
                 locationId = storage.estateObject.locationId,
-                RegionId = (int)storage.estateObject.Location.RegionId,
-                LocalityId = (int)storage.estateObject.Location.LocalityId,
-                DistrictId = (int)storage.estateObject.Location.DistrictId,
+                RegionId = storage.estateObject.Location.RegionId,
+                RegionName = storage.estateObject.Location.Region.Name,
+                LocalityId = storage.estateObject.Location.LocalityId,
+                LocalityName = storage.estateObject.Location.Locality.Name,
+                DistrictId = storage.estateObject.Location.DistrictId,
+                DistrictName = storage.estateObject.Location.District.Name,
                 Street = storage.estateObject.Street,
                 numberStreet = storage.estateObject.numberStreet,
+
                 Price = storage.estateObject.Price,
                 currencyId = storage.estateObject.currencyId,
                 Area = storage.estateObject.Area,

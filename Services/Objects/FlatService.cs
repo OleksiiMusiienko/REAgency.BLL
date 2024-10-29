@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using REAgency.BLL.DTO.Object;
 using REAgency.BLL.Interfaces.Object;
+using REAgency.DAL.Entities.Locations;
 using REAgency.DAL.Entities.Object;
 using REAgency.DAL.Interfaces;
 using System.ComponentModel.DataAnnotations;
@@ -89,8 +90,8 @@ namespace REAgency.BLL.Services.Objects
             var flat = await Database.Flats.GetByEstateObjectId(id);
             if (flat == null)
                 throw new ValidationException("Wrong flat!");
-            
-            return new FlatDTO {
+
+            FlatDTO flatDTO = new FlatDTO {
                 Id = flat.Id,
                 Floor = flat.Floor,
                 Floors = flat.Floors,
@@ -102,31 +103,35 @@ namespace REAgency.BLL.Services.Objects
                 clientPhone = flat.estateObject.Client.Phone1,
                 clientName = flat.estateObject.Client.Name,
                 employeeId = flat.estateObject.employeeId,
-                //employeeName = estateObject.Employee.Name,
-                //employeePhone = estateObject.Employee.Phone1,
+                employeeName = flat.estateObject.Employee.Name,
+                employeePhone = flat.estateObject.Employee.Phone1,
                 operationId = flat.estateObject.operationId,
-                //operationName = estateObject.Operation.Name,
+                operationName = flat.estateObject.Operation.Name,
                 locationId = flat.estateObject.locationId,
 
-                RegionId = (int)flat.estateObject.Location.RegionId,
-                LocalityId = (int)flat.estateObject.Location.LocalityId,
-                DistrictId = (int)flat.estateObject.Location.DistrictId,
+                RegionId = flat.estateObject.Location.RegionId,
+                RegionName = flat.estateObject.Location.Region.Name,
+                LocalityId = flat.estateObject.Location.LocalityId,
+                LocalityName = flat.estateObject.Location.Region.Name,
+                DistrictId = flat.estateObject.Location.DistrictId,
+                DistrictName = flat.estateObject.Location.District.Name,
                 Street = flat.estateObject.Street,
                 numberStreet = flat.estateObject.numberStreet,
                 Price = flat.estateObject.Price,
                 currencyId = flat.estateObject.currencyId,
-                //currencyName = estateObject.Currency.Name,
+                currencyName = flat.estateObject.Currency.Name,
                 Area = flat.estateObject.Area,
                 unitAreaId = flat.estateObject.unitAreaId,
-                //areaName = estateObject.unitArea.Name,
+                areaName = flat.estateObject.unitArea.Name,
                 Description = flat.estateObject.Description,
                 Status = flat.estateObject.Status,
                 Date = flat.estateObject.Date,
                 pathPhoto = flat.estateObject.pathPhoto,
                 estateType = flat.estateObject.estateType,
-                estateObjectId = (int)flat.estateObjectId
+                estateObjectId = (int)flat.estateObjectId,
             };
-           
+            return flatDTO;
+
         }
         public async Task CreateFlat(FlatDTO flatDTO)
         {

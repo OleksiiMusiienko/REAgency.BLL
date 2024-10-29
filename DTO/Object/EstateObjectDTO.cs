@@ -18,19 +18,23 @@ namespace REAgency.BLL.DTO.Object
         public string clientPhone { get; set; }
         //приходит сотрудник, отображаем имя и телефон для всех
         public int employeeId { get; set; }
-        //public string employeeName { get; set; }
-        //public string employeePhone { get; set; }
+        public string employeeName { get; set; }
+        public string employeePhone { get; set; }
 
         public int operationId { get; set; }
-        //public string operationName { get; set; }
+        public string operationName { get; set; }
 
        //по локациям отображаем страну, область, район, населенный пункт
         public int locationId { get; set; }
+        public string locationName { get; set; }
         public int countryId { get; set; }
+        public string countryName { get; set; }
         public int? RegionId{ get; set; }
-        public int ?DistrictId { get; set; }
-
+        public string RegionName { get; set; }
+        public int? DistrictId { get; set; }
+        public string DistrictName { get; set; }
         public int? LocalityId { get; set; }
+        public string LocalityName { get; set; }
         public string? Street { get; set; }
       
         public int? numberStreet { get; set; }
@@ -40,14 +44,14 @@ namespace REAgency.BLL.DTO.Object
         [Range(30, int.MaxValue)]
         public int Price { get; set; }
         public int currencyId { get; set; }
-        //public string currencyName { get; set; }
+        public string currencyName { get; set; }
 
         [Required(ErrorMessage = "Поле \"Загальга площа\" обов'язкове!")]
         [Display(Name = "Загальна площа")]
         [Range(0.1, double.MaxValue)]
         public double Area { get; set; }
         public int unitAreaId { get; set; }
-        //public string areaName { get; set; }
+        public string areaName { get; set; }
 
         [Required(ErrorMessage = "Поле \"Опис\" обов'язкове!")]
         [Display(Name = "Опис")]

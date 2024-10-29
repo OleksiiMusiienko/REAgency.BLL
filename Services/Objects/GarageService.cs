@@ -77,11 +77,18 @@ namespace REAgency.BLL.Services.Objects
                 clientPhone = garage.estateObject.Client.Phone1,
                 clientName = garage.estateObject.Client.Name,
                 employeeId = garage.estateObject.employeeId,
+                employeeName = garage.estateObject.Employee.Name,
+                employeePhone = garage.estateObject.Employee.Phone1,
                 operationId = garage.estateObject.operationId,
+                operationName = garage.estateObject.Operation.Name,
                 locationId = garage.estateObject.locationId,
-                RegionId = (int)garage.estateObject.Location.RegionId,
-                LocalityId = (int)garage.estateObject.Location.LocalityId,
-                DistrictId = (int)garage.estateObject.Location.DistrictId,
+                countryName = garage.estateObject.Location.Country.Name,
+                RegionId = garage.estateObject.Location.RegionId,
+                RegionName = garage.estateObject.Location.Region.Name,
+                LocalityId = garage.estateObject.Location.LocalityId,
+                LocalityName = garage.estateObject.Location.Locality.Name,
+                DistrictId = garage.estateObject.Location.DistrictId,
+                DistrictName = garage.estateObject.Location.District.Name,
                 Street = garage.estateObject.Street,
                 numberStreet = garage.estateObject.numberStreet,
                 Price = garage.estateObject.Price,
@@ -93,6 +100,7 @@ namespace REAgency.BLL.Services.Objects
                 Date = garage.estateObject.Date,
                 pathPhoto = garage.estateObject.pathPhoto,
                 estateType = garage.estateObject.estateType,
+                currencyName = garage.estateObject.Currency.Name
             };
         }
         public async Task CreateGarage(GarageDTO garageDTO)
