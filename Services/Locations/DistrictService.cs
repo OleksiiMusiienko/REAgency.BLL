@@ -4,6 +4,8 @@ using REAgency.BLL.Interfaces.Locations;
 using REAgency.DAL.Entities.Locations;
 using REAgency.DAL.Interfaces;
 using AutoMapper;
+using REAgency.BLL.DTO.Object;
+using REAgency.DAL.Entities.Object;
 
 namespace REAgency.BLL.Services.Locations
 {
@@ -14,9 +16,11 @@ namespace REAgency.BLL.Services.Locations
         {
             Database = uow;
         }
-        public async Task<IEnumerable<DistrictDTO>> GetDistrict()
+        public async Task<IEnumerable<DistrictDTO>> GetDistricts()
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<District, DistrictDTO>()).CreateMapper();
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<District, DistrictDTO>()
+                 .ForMember("regionName", opt => opt.MapFrom(r => r.Region.Name)));
+            var mapper = new Mapper(config);
             return mapper.Map<IEnumerable<District>, IEnumerable<DistrictDTO>>(await Database.Districts.GetAll());
         }
 

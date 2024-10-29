@@ -16,7 +16,10 @@ namespace REAgency.BLL.Services.Locations
         }
         public async Task<IEnumerable<LocalityDTO>> GetLocalities()
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Locality, LocalityDTO>()).CreateMapper();
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Locality, LocalityDTO>()
+                .ForMember("districtName", opt => opt.MapFrom(r => r.District.Name))
+                .ForMember("regionName", opt => opt.MapFrom(r => r.District.Region.Name)));
+            var mapper = new Mapper(config);
             return mapper.Map<IEnumerable<Locality>, IEnumerable<LocalityDTO>>(await Database.Localities.GetAll());
         }
 
@@ -29,7 +32,7 @@ namespace REAgency.BLL.Services.Locations
             {
                 Id = localitie.Id,
                 Name = localitie.Name,
-                DistrictId = localitie.DistrictId
+                DistrictId = (int)localitie.DistrictId
             };
 
         }
@@ -43,7 +46,7 @@ namespace REAgency.BLL.Services.Locations
             {
                 Id = localitie.Id,
                 Name = localitie.Name,
-                DistrictId = localitie.DistrictId
+                DistrictId = (int)localitie.DistrictId
             };
 
         }

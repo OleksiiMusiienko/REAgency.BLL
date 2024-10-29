@@ -11,13 +11,16 @@ namespace REAgency.BLL.DTO.Persons
     {
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Поле має бути встановлене.")]
-        public string Password { get; set; }
-        public string Salt { get; set; }
-        public byte[] Avatar { get; set; }
+        public string? Password { get; set; }
+        public string? Salt { get; set; }
+        public byte[]? Avatar { get; set; }
         [Required(ErrorMessage = "Поле має бути встановлене.")]
         [Display(Name = "Додатковий номер телефону")]
         public string? Phone2 { get; set; }
+
+        [Required(ErrorMessage = "Поле має бути встановлене.")]
         public DateTime dateReg { get; set; }
+        [Required(ErrorMessage = "Поле має бути встановлене.")]
         public bool adminStatus { get; set; }
         [Display(Name = "Посада працівника")]
         public string? Post { get; set; }

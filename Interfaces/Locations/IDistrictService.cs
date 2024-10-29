@@ -9,7 +9,7 @@ namespace REAgency.BLL.Interfaces.Locations
 {
     public interface IDistrictService
     {
-        Task<IEnumerable<DistrictDTO>> GetDistrict();
+        Task<IEnumerable<DistrictDTO>> GetDistricts();
 
         Task<DistrictDTO> GetDistrictById(int id);
 
