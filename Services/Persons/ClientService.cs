@@ -22,12 +22,7 @@ namespace REAgency.BLL.Services.Persons
 
         public async Task<IEnumerable<ClientDTO>> GetClients()
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Client, ClientDTO>()
-            .ForMember("OperationName", opt => opt.MapFrom(c => c.Operation.Name))
-            .ForMember("EmployeeName", opt => opt.MapFrom(c => c.Employee.Name))
-            .ForMember("EmployeePhone1", opt => opt.MapFrom(c => c.Employee.Phone1))
-            .ForMember("EmployeePhone2", opt => opt.MapFrom(c => c.Employee.Phone2)));
-            var mapper = new Mapper(config);
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Client, ClientDTO>()).CreateMapper();
             return mapper.Map<IEnumerable<Client>, IEnumerable<ClientDTO>>(await Database.Clients.GetAll());
         }
 
