@@ -4,6 +4,8 @@ using REAgency.BLL.Interfaces.Object;
 using REAgency.DAL.Entities.Object;
 using REAgency.DAL.Interfaces;
 using System.ComponentModel.DataAnnotations;
+using System.Formats.Asn1;
+using System.Numerics;
 
 namespace REAgency.BLL.Services.Objects
 {
@@ -204,7 +206,11 @@ namespace REAgency.BLL.Services.Objects
             await Database.Save();
 
         }
-
+        public async Task UpdateEstateObjectCountViews(int id, int count)
+        {
+            Database.EstateObjects.UpdateCountViews(id, count);
+            await Database.Save();
+        }
         public async Task DeleteEstateObject(int id)
         {
             await Database.EstateObjects.Delete(id);

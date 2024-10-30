@@ -25,6 +25,7 @@ namespace REAgency.BLL.Interfaces.Object
         Task<EstateObjectDTO> GetByDateTime(DateTime date);
         Task CreateEstateObject(EstateObjectDTO estateObjectsDTO);
         Task UpdateEstateObject(EstateObjectDTO estateObjectsDTO);
+        Task UpdateEstateObjectCountViews(int id, int count);
         Task DeleteEstateObject(int id);
         Task UpdateEstateObjectPath(EstateObjectDTO estateObjectsDTO);
     }
