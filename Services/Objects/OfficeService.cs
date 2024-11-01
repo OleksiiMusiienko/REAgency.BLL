@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using REAgency.BLL.DTO.Object;
 using REAgency.BLL.Interfaces.Object;
+using REAgency.DAL.Entities;
 using REAgency.DAL.Entities.Object;
 using REAgency.DAL.Interfaces;
 using System.ComponentModel.DataAnnotations;
@@ -68,8 +69,11 @@ namespace REAgency.BLL.Services.Objects
                 employeeName = office.estateObject.Employee.Name,
                 employeePhone = office.estateObject.Employee.Phone1,
                 operationId = office.estateObject.operationId,
+                operationName = office.estateObject.Operation.Name,
 
                 locationId = office.estateObject.locationId,
+                countryId = office.estateObject.Location.Country.Id,
+                countryName = office.estateObject.Location.Country.Name,
                 RegionId = office.estateObject.Location.RegionId,
                 RegionName = office.estateObject.Location.Region.Name,
                 LocalityId = office.estateObject.Location.LocalityId,
@@ -81,7 +85,7 @@ namespace REAgency.BLL.Services.Objects
                 numberStreet = office.estateObject.numberStreet,
                 Price = office.estateObject.Price,
                 currencyId = office.estateObject.currencyId,
-                Area = office.estateObject.Area,
+                currencyName = office.estateObject.Currency.Name,
                 unitAreaId = office.estateObject.unitAreaId,
                 Description = office.estateObject.Description,
                 Status = office.estateObject.Status,

@@ -80,8 +80,11 @@ namespace REAgency.BLL.Services.Objects
                 employeeName = stead.estateObject.Employee.Name,
                 employeePhone = stead.estateObject.Employee.Phone1,
                 operationId = stead.estateObject.operationId,
+                operationName = stead.estateObject.Operation.Name,
 
                 locationId = stead.estateObject.locationId,
+                countryId = stead.estateObject.Location.Country.Id,
+                countryName = stead.estateObject.Location.Country.Name,
                 RegionId = stead.estateObject.Location.RegionId,
                 RegionName = stead.estateObject.Location.Region.Name,
                 LocalityId = stead.estateObject.Location.LocalityId,
@@ -93,6 +96,7 @@ namespace REAgency.BLL.Services.Objects
 
                 Price = stead.estateObject.Price,
                 currencyId = stead.estateObject.currencyId,
+                currencyName = stead.estateObject.Currency.Name,
                 Area = stead.estateObject.Area,
                 unitAreaId = stead.estateObject.unitAreaId,
                 Description = stead.estateObject.Description,

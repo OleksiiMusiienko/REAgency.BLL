@@ -93,6 +93,7 @@ namespace REAgency.BLL.Services.Objects
                 numberStreet = garage.estateObject.numberStreet,
                 Price = garage.estateObject.Price,
                 currencyId = garage.estateObject.currencyId,
+                currencyName = garage.estateObject.Currency.Name,
                 Area = garage.estateObject.Area,
                 unitAreaId = garage.estateObject.unitAreaId,
                 Description = garage.estateObject.Description,
@@ -100,7 +101,6 @@ namespace REAgency.BLL.Services.Objects
                 Date = garage.estateObject.Date,
                 pathPhoto = garage.estateObject.pathPhoto,
                 estateType = garage.estateObject.estateType,
-                currencyName = garage.estateObject.Currency.Name
             };
         }
         public async Task CreateGarage(GarageDTO garageDTO)

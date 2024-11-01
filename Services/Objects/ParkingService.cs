@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Identity.Client.Extensions.Msal;
 using REAgency.BLL.DTO.Object;
 using REAgency.BLL.Interfaces.Object;
 using REAgency.DAL.Entities.Object;
@@ -67,8 +68,11 @@ namespace REAgency.BLL.Services.Objects
                 employeeName = parking.estateObject.Employee.Name,
                 employeePhone = parking.estateObject.Employee.Phone1,
                 operationId = parking.estateObject.operationId,
+                operationName = parking.estateObject.Operation.Name,
 
                 locationId = parking.estateObject.locationId,
+                countryId = parking.estateObject.Location.Country.Id,
+                countryName = parking.estateObject.Location.Country.Name,
                 RegionId = parking.estateObject.Location.RegionId,
                 RegionName = parking.estateObject.Location.Region.Name,
                 LocalityId = parking.estateObject.Location.LocalityId,
@@ -80,6 +84,7 @@ namespace REAgency.BLL.Services.Objects
                 numberStreet = parking.estateObject.numberStreet,
                 Price = parking.estateObject.Price,
                 currencyId = parking.estateObject.currencyId,
+                currencyName = parking.estateObject.Currency.Name,
                 Area = parking.estateObject.Area,
                 unitAreaId = parking.estateObject.unitAreaId,
                 Description = parking.estateObject.Description,

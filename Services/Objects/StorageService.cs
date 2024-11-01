@@ -67,8 +67,11 @@ namespace REAgency.BLL.Services.Objects
                 employeeName = storage.estateObject.Employee.Name,
                 employeePhone = storage.estateObject.Employee.Phone1,
                 operationId = storage.estateObject.operationId,
+                operationName = storage.estateObject.Operation.Name,
 
                 locationId = storage.estateObject.locationId,
+                countryId = storage.estateObject.Location.Country.Id,
+                countryName = storage.estateObject.Location.Country.Name,
                 RegionId = storage.estateObject.Location.RegionId,
                 RegionName = storage.estateObject.Location.Region.Name,
                 LocalityId = storage.estateObject.Location.LocalityId,
@@ -80,6 +83,7 @@ namespace REAgency.BLL.Services.Objects
 
                 Price = storage.estateObject.Price,
                 currencyId = storage.estateObject.currencyId,
+                currencyName = storage.estateObject.Currency.Name,
                 Area = storage.estateObject.Area,
                 unitAreaId = storage.estateObject.unitAreaId,
                 Description = storage.estateObject.Description,

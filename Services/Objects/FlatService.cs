@@ -108,7 +108,7 @@ namespace REAgency.BLL.Services.Objects
                 operationId = flat.estateObject.operationId,
                 operationName = flat.estateObject.Operation.Name,
                 locationId = flat.estateObject.locationId,
-
+                countryName = flat.estateObject.Location.Country.Name,
                 RegionId = flat.estateObject.Location.RegionId,
                 RegionName = flat.estateObject.Location.Region.Name,
                 LocalityId = flat.estateObject.Location.LocalityId,
