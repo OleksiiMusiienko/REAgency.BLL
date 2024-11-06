@@ -13,6 +13,7 @@ namespace REAgency.BLL.Interfaces.Locations
 
         Task<LocalityDTO> GetLocalityById(int id);
 
+        Task<IEnumerable<LocalityDTO>> GetLocalityByDistrictId(int id);
         Task<LocalityDTO> GetLocalityByName(string name);
 
         Task CreateLocality(LocalityDTO localityDTO);

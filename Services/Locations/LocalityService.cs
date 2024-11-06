@@ -36,6 +36,14 @@ namespace REAgency.BLL.Services.Locations
             };
 
         }
+        public async Task<IEnumerable<LocalityDTO>> GetLocalityByDistrictId(int id)
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Locality, LocalityDTO>()
+                  .ForMember("districtName", opt => opt.MapFrom(r => r.District.Name))
+                  .ForMember("regionName", opt => opt.MapFrom(r => r.District.Region.Name)));
+            var mapper = new Mapper(config);
+            return mapper.Map<IEnumerable<Locality>, IEnumerable<LocalityDTO>>(await Database.Localities.GetLocationById(id));
+        }
 
         public async Task<LocalityDTO> GetLocalityByName(string name)
         {
