@@ -71,7 +71,7 @@ namespace REAgency.BLL.Services.Objects
             {
                 Id = garage.Id,
                 Floors = garage.Floors,
-                estateObjectId = garage.estateObjectId,
+                estateObjectId = garage.estateObject.Id,
                 countViews = garage.estateObject.countViews,
                 clientId = garage.estateObject.clientId,
                 clientPhone = garage.estateObject.Client.Phone1,

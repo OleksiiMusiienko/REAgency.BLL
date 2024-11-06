@@ -58,7 +58,7 @@ namespace REAgency.BLL.Services.Objects
             return new StorageDTO
             {
                 Id = storage.Id,
-                estateObjectId = storage.estateObjectId,
+                estateObjectId = storage.estateObject.Id,
                 countViews = storage.estateObject.countViews,
                 clientId = storage.estateObject.clientId,
                 clientPhone = storage.estateObject.Client.Phone1,

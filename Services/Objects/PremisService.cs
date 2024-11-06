@@ -57,7 +57,7 @@ namespace REAgency.BLL.Services.Objects
             return new PremisDTO
             {
                 Id = prem.Id,
-                estateObjectId = prem.estateObjectId,
+                estateObjectId = prem.estateObject.Id,
                 countViews = prem.estateObject.countViews,
                 clientId = prem.estateObject.clientId,
                 clientPhone = prem.estateObject.Client.Phone1,

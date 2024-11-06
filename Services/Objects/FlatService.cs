@@ -128,7 +128,7 @@ namespace REAgency.BLL.Services.Objects
                 Date = flat.estateObject.Date,
                 pathPhoto = flat.estateObject.pathPhoto,
                 estateType = flat.estateObject.estateType,
-                estateObjectId = (int)flat.estateObjectId,
+                estateObjectId = flat.estateObject.Id,
             };
             return flatDTO;
 

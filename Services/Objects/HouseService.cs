@@ -118,7 +118,7 @@ namespace REAgency.BLL.Services.Objects
                 Date = house.estateObject.Date,
                 pathPhoto = house.estateObject.pathPhoto,
                 estateType = house.estateObject.estateType,
-                estateObjectId = (int)house.estateObjectId
+                estateObjectId = house.estateObject.Id
             };
 
         }

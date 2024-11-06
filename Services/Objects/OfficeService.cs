@@ -60,7 +60,7 @@ namespace REAgency.BLL.Services.Objects
             return new OfficeDTO
             {
                 Id = office.Id,
-                estateObjectId = office.estateObjectId,
+                estateObjectId = office.estateObject.Id,
                 countViews = office.estateObject.countViews,
                 clientId = office.estateObject.clientId,
                 clientPhone = office.estateObject.Client.Phone1,

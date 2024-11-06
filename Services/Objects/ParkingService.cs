@@ -59,7 +59,7 @@ namespace REAgency.BLL.Services.Objects
             return new ParkingDTO
             {
                 Id = parking.Id,
-                estateObjectId = (int)parking.estateObjectId,
+                estateObjectId = parking.estateObject.Id,
                 countViews = parking.estateObject.countViews,
                 clientId = parking.estateObject.clientId,
                 clientPhone = parking.estateObject.Client.Phone1,
