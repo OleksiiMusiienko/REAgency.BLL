@@ -112,7 +112,7 @@ namespace REAgency.BLL.Services.Objects
                 RegionId = flat.estateObject.Location.RegionId,
                 RegionName = flat.estateObject.Location.Region.Name,
                 LocalityId = flat.estateObject.Location.LocalityId,
-                LocalityName = flat.estateObject.Location.Region.Name,
+                LocalityName = flat.estateObject.Location.Locality.Name,
                 DistrictId = flat.estateObject.Location.DistrictId,
                 DistrictName = flat.estateObject.Location.District.Name,
                 Street = flat.estateObject.Street,
