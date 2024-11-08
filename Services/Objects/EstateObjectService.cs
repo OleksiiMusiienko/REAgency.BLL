@@ -3,6 +3,7 @@ using REAgency.BLL.DTO.Object;
 using REAgency.BLL.Interfaces.Object;
 using REAgency.DAL.Entities.Object;
 using REAgency.DAL.Interfaces;
+using REAgencyEnum;
 using System.ComponentModel.DataAnnotations;
 using System.Formats.Asn1;
 using System.Numerics;
@@ -60,7 +61,8 @@ namespace REAgency.BLL.Services.Objects
                 Status = estateObject.Status,
                 Date = estateObject.Date,
                 pathPhoto = estateObject.pathPhoto,
-                estateType =estateObject.estateType 
+                estateType = estateObject.estateType,
+                objectType = estateObject.estateType.ToString(),
             };
         }
 

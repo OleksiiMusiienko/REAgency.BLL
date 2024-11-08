@@ -60,7 +60,8 @@ namespace REAgency.BLL.DTO.Object
         public bool Status { get; set; }
         public DateTime Date { get; set; }
         public string? pathPhoto { get; set; }
-        public ObjectType estateType { get; set; } 
+        public ObjectType estateType { get; set; }
+        public string objectType { get; set; }
 
     }
 }
